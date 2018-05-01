@@ -3,4 +3,5 @@ class Review < ApplicationRecord
 
   belongs_to :user, :foreign_key => 'student_id'
   belongs_to :user, :foreign_key => 'tutor_id'
+  belongs_to :subject
 end

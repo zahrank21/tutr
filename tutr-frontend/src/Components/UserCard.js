@@ -43,8 +43,12 @@ const UserCard = props => {
             {`${props.user.username}`}
           </Typography>
           <Typography component="p">
-            Tutor: {`${props.user.tutor}`}
+            {props.user.tutor ? 'Tutor' : 'Student'}
           </Typography>
+          <CardActions>
+            <Button size="small">Review</Button>
+            <Button size="small">Book Session</Button>
+          </CardActions>
         </CardContent>
       </Card>
       </div>
