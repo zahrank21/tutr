@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import Avatar from 'material-ui/Avatar';
+import classNames from 'classnames';
+
 //
 
 //redux
@@ -18,6 +21,17 @@ const styles = theme => ({
     paddingBottom: 16,
     marginTop: theme.spacing.unit * 3,
   }),
+  avatar: {
+    margin: 10,
+  },
+  bigAvatar: {
+    width: 200,
+    height: 200,
+  },
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 
 });
 
@@ -31,9 +45,15 @@ function UserPage(props) {
           <Typography variant="headline" component="h3">
             {`Welcome Back ${props.currentUser.username}!`}
           </Typography>
-          
-          <Typography component="p">
-            Paper can be used to build surface or other elements for your application.
+          <div className={classes.row}>
+
+            <Avatar
+              src={`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 500 )}`}
+              className={classNames(classes.avatar, classes.bigAvatar)}
+            />
+         </div>
+          <Typography component="h4">
+            {`${props.currentUser.first_name} ${props.currentUser.last_name}`}
           </Typography>
         </Paper>
 
