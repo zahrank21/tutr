@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 // redux
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { createUser, fetchUsers, setUser } from '../Actions/userActions'
+import { createReview } from '../Actions/reviewActions'
+import { fetchUsers } from '../Actions/userActions'
 import { fetchSubjects } from '../Actions/subjectActions'
 //
 
@@ -63,7 +64,7 @@ class ReviewForm extends React.Component {
   componentWillMount(){
     this.props.fetchSubjects();
     this.props.fetchUsers();
-    console.log('login props', this.props)
+    console.log('review props', this.props)
   }
 
 
@@ -73,9 +74,17 @@ class ReviewForm extends React.Component {
     console.log(`${[prop]}: ${event.target.value}`)
   };
 
-
-
-
+  handleSubmitReviewClick = () => {
+    console.log(this.state)
+    this.props.createReview({
+      tutor_id: parseInt(this.props.tutor),
+      student_id: parseInt(this.props.currentUser.id),
+      body: this.state.body,
+      title: this.state.title,
+      score: parseInt(this.state.rating),
+      subject_id: parseInt(this.props.currentUser.subject_id)
+    })
+  }
 
 
 
@@ -89,17 +98,23 @@ class ReviewForm extends React.Component {
         <CardContent>
 
         <Typography variant="headline" component="h3">
-          ReviewForm
+          Send Review
         </Typography>
 
         <TextField
           label="Title"
+          id='title'
           className={classNames(classes.margin, classes.textField)}
+          onChange={this.handleChange('title')}
+          value={this.state.title}
         />
 
-        <FormControl className={classNames(classes.margin, classes.textField)}>
+      <FormControl onChange={this.handleChange} className={classNames(classes.margin, classes.textField)}>
           <InputLabel>Body</InputLabel>
           <Input
+            id='Body'
+            value={this.state.body}
+            onChange={this.handleChange('body')}
           />
         </FormControl>
 
@@ -108,7 +123,7 @@ class ReviewForm extends React.Component {
           label="Rating"
           className={classNames(classes.margin, classes.textField)}
           value={this.state.rating}
-          onChange={this.handleChange('subject')}
+          onChange={this.handleChange('rating')}
         >
           {[1,2,3,4,5].map(int => (
             <MenuItem key={int} value={int}>
@@ -120,7 +135,7 @@ class ReviewForm extends React.Component {
 
           </CardContent>
           <CardActions>
-            <Button size="small">Submit</Button>
+            <Button onClick={this.handleSubmitReviewClick} size="small">Submit</Button>
           </CardActions>
         </Card>
       </div>
@@ -132,11 +147,18 @@ ReviewForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchReview: review => dispatch(createReview(review)),
+  }
+}
+
+
 const mapStateToProps = state => ({
   subjects: state.subjects.subjectItems,
-  users: state.users.cards
+  currentUser: state.users.currentUser,
 })
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, { createUser, fetchSubjects, fetchUsers, setUser }))(ReviewForm)
+  connect( mapStateToProps, { createReview, fetchUsers, fetchSubjects }))(ReviewForm)

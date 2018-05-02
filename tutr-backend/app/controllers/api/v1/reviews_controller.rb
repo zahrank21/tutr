@@ -34,6 +34,6 @@ class Api::V1::ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:tutor_id, :student_id, :body, :title, :score)
+      params.require(:review).permit(:tutor_id, :student_id, :body, :title, :score, :subject_id)
     end
 end

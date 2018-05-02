@@ -23,23 +23,30 @@ const styles = {
   },
 };
 
-const UserCard = props => {
+class UserCard extends React.Component{
 
-  const handleBookSessionClick = () => {
-    props.createSession({
+  state = {
+    reviewClick: false
+  }
+
+  handleBookSessionClick = () => {
+    this.props.createSession({
       title: 'Session',
-      tutor_id: props.user.id,
-      student_id: props.currentUser.id,
-      subject_id: props.currentUser.subject_id,
+      tutor_id: this.props.user.id,
+      student_id: this.props.currentUser.id,
+      subject_id: this.props.currentUser.subject_id,
       completed: false
     });
   }
 
-  const handleTutorReviewClick = () => {
-    console.log('hit')
+  handleTutorReviewClick = () => {
+    this.setState({
+      reviewClick: !this.state.reviewClick
+    })
   }
 
-  const { classes } = props;
+  render(){
+  const { classes } = this.props;
   return (
 
     <div>
@@ -51,24 +58,25 @@ const UserCard = props => {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            {`${props.user.first_name} ${props.user.last_name}`}
+            {`${this.props.user.first_name} ${this.props.user.last_name}`}
           </Typography>
           <Typography component="p">
-            {`${props.user.username}`}
+            {`${this.props.user.username}`}
           </Typography>
           <Typography component="p">
-            {props.user.tutor ? 'Tutor' : 'Student'}
+            {this.props.user.tutor ? 'Tutor' : 'Student'}
           </Typography>
           <CardActions>
-            <Button onClick={handleTutorReviewClick} size="small">Review</Button>
-            <Button onClick={handleBookSessionClick} size="small">Book Session</Button>
+            <Button onClick={this.handleTutorReviewClick} size="small">Review</Button>
+            <Button onClick={this.handleBookSessionClick} size="small">Book Session</Button>
           </CardActions>
-          <ReviewForm />
+          {this.state.reviewClick ? <ReviewForm tutor={this.props.user.id} /> : null}
         </CardContent>
       </Card>
       </div>
     </div>
   )
+  }
 }
 
 const mapDispatchToProps = dispatch => {
