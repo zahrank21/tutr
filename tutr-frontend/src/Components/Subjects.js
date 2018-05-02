@@ -35,7 +35,9 @@ class Subjects extends React.Component{
     <Typography variant="display2" gutterBottom>
     Subjects
     </Typography>
+        <GridList>
           {this.mapSubjects()}
+        </GridList>
     </div>
     )
   }

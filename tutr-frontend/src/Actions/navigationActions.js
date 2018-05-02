@@ -4,9 +4,11 @@ export let handleClickLogin = () => {
     type: 'LOGIN_TAB',
     payload: {
       login: true,
+      userPage: false,
+      sessions: false,
       subjects: false,
       reviews: false,
-      tutors: false
+      tutors: false,
     }
   }
 }
@@ -17,9 +19,11 @@ export let handleClickSubjects = () => {
     type: 'SUBJECTS_TAB',
     payload: {
       login: false,
+      userPage: false,
+      sessions: false,
       subjects: true,
       reviews: false,
-      tutors: false
+      tutors: false,
     }
   }
 }
@@ -30,9 +34,11 @@ export let handleClickReviews = () => {
     type: 'REVIEWS_TAB',
     payload: {
       login: false,
+      userPage: false,
+      sessions: false,
       subjects: false,
       reviews: true,
-      tutors: false
+      tutors: false,
     }
   }
 }
@@ -43,10 +49,42 @@ export let handleClickTutors = () => {
     type: 'TUTORS_TAB',
     payload: {
       login: false,
+      userPage: false,
+      sessions: false,
       subjects: false,
       reviews: false,
-      tutors: true
+      tutors: true,
 
+    }
+  }
+}
+
+export let handleClickSessions = () => {
+  console.log('action hit')
+  return {
+    type: 'SESSIONS_TAB',
+    payload: {
+      login: false,
+      userPage: false,
+      sessions: true,
+      subjects: false,
+      reviews: false,
+      tutors: false,
+    }
+  }
+}
+
+export let handleClickUserProfile = () => {
+  console.log('action hit')
+  return {
+    type: 'PROFILE_TAB',
+    payload: {
+      login: false,
+      userPage: true,
+      sessions: false,
+      subjects: false,
+      reviews: false,
+      tutors: false,
     }
   }
 }

@@ -42,3 +42,10 @@ export const setUser = (userData) => {
     payload: userData
   }
 }
+
+export const clearSession = () => {
+  return {
+    type: 'CLEAR_SESSION',
+    payload: {}
+  }
+}

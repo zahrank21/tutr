@@ -20,7 +20,8 @@ import { handleClickTutors } from '../Actions/navigationActions'
 
 const styles = {
   card: {
-    maxWidth: 345,
+    width: 250,
+    height: 230
   },
   media: {
     height: 0,
@@ -44,7 +45,7 @@ const SubjectCard = props => {
       <Card onClick={handleSubjectCardClick} className={classes.card}>
         <CardMedia
           className={classes.media}
-          image={`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 1000)}`}
+          image={`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 550 )}`}
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">

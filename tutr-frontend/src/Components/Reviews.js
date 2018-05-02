@@ -1,14 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+
 import { fetchReviews } from '../Actions/reviewActions'
 import ReviewCard from './ReviewCard.js';
-import GridList, { GridListTile } from 'material-ui/GridList';
+import GridList from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
 
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+});
 
 class Reviews extends React.Component{
+
 
   componentWillMount(){
     this.props.fetchReviews();
@@ -28,12 +37,15 @@ class Reviews extends React.Component{
   }
 
   render () {
+    const {classes} = this.props;
     return (
-    <div>
+    <div className={classes.root} justify='center'>
       <Typography variant="display2" gutterBottom>
         Reviews
       </Typography>
+        <GridList justify='center'>
           {this.mapReviews()}
+        </GridList>
     </div>
     )
   }
@@ -50,4 +62,6 @@ const mapStateToProps = state => ({
   newReview: state.reviews.reviewItem
 })
 
-export default connect(mapStateToProps, { fetchReviews })(Reviews);
+export default  compose(
+  withStyles(styles),
+  connect(mapStateToProps, { fetchReviews }))(Reviews);

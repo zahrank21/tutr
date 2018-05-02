@@ -1,8 +1,9 @@
 import React from 'react';
+import ReviewForm from './ReviewForm'
 //redux
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-
+import {createSession} from '../Actions/sessionActions'
 //
 
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
@@ -14,7 +15,7 @@ import { withStyles } from 'material-ui/styles';
 
 const styles = {
   card: {
-    maxWidth: 345,
+    width: 300,
   },
   media: {
     height: 0,
@@ -24,6 +25,19 @@ const styles = {
 
 const UserCard = props => {
 
+  const handleBookSessionClick = () => {
+    props.createSession({
+      title: 'Session',
+      tutor_id: props.user.id,
+      student_id: props.currentUser.id,
+      subject_id: props.currentUser.subject_id,
+      completed: false
+    });
+  }
+
+  const handleTutorReviewClick = () => {
+    console.log('hit')
+  }
 
   const { classes } = props;
   return (
@@ -46,9 +60,10 @@ const UserCard = props => {
             {props.user.tutor ? 'Tutor' : 'Student'}
           </Typography>
           <CardActions>
-            <Button size="small">Review</Button>
-            <Button size="small">Book Session</Button>
+            <Button onClick={handleTutorReviewClick} size="small">Review</Button>
+            <Button onClick={handleBookSessionClick} size="small">Book Session</Button>
           </CardActions>
+          <ReviewForm />
         </CardContent>
       </Card>
       </div>
@@ -56,4 +71,17 @@ const UserCard = props => {
   )
 }
 
-export default withStyles(styles)(UserCard);
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchBookSession: session => dispatch(createSession(session)),
+  }
+}
+
+const mapStateToProps = state => ({
+  users: state.users.cards,
+  currentUser: state.users.currentUser
+})
+
+export default compose(
+  connect(mapStateToProps, { createSession }),
+  withStyles(styles))(UserCard);

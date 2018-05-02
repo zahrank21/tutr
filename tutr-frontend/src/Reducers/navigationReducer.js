@@ -1,5 +1,7 @@
 const initialState = {
   login: true,
+  userPage: false,
+  sessions: false,
   subjects: false,
   reviews: false,
   tutors: false
@@ -19,10 +21,20 @@ export default function(state = initialState, action) {
       console.log('reducer hit')
       return action.payload
 
+    case 'SESSIONS_TAB':
+      console.log('reducer hit')
+      return action.payload
+
+    case 'PROFILE_TAB':
+      console.log('reducer hit')
+      return action.payload
+
     case 'CHOSEN_SUBJECT':
       console.log('reducer hit')
       return {
         login: false,
+        userPage: false,
+        sessions: false,
         subjects: false,
         reviews: false,
         tutors: true

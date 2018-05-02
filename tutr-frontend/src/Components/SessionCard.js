@@ -23,7 +23,10 @@ const styles = {
   },
 };
 
-const ReviewCard = props => {
+const SessionCard = props => {
+
+  console.log(props)
+  const { classes } = props;
 
   const componentWillMount = () => {
     props.fetchSubjects();
@@ -43,7 +46,9 @@ const ReviewCard = props => {
     return foundSubject[0].name
   }
 
-  const { classes } = props;
+
+
+
   return (
 
     <div>
@@ -55,19 +60,19 @@ const ReviewCard = props => {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            {`${props.review.title}`}
+            {`${props.session.title}`}
           </Typography>
           <Typography component="p">
-            {`${props.review.body}`}
+            Student: {`${getUsername(props.session.student_id)}`}
           </Typography>
           <Typography component="p">
-            Tutor: {`${getUsername(props.review.tutor_id)}`}
+            Tutor: {`${getUsername(props.session.tutor_id)}`}
           </Typography>
           <Typography component="p">
-            Student: {`${getUsername(props.review.student_id)}`}
+            Subject: {`${getSubjectName(props.session.subject_id)}`}
           </Typography>
           <Typography component="p">
-            Rating: {`${props.review.score}`}
+            Status: {props.session.completed ? 'Completed' : 'Pending'}
           </Typography>
         </CardContent>
       </Card>
@@ -83,4 +88,4 @@ const mapStateToProps = state => ({
 })
 
 export default compose(withStyles(styles),
-connect(mapStateToProps))(ReviewCard);
+connect(mapStateToProps))(SessionCard);

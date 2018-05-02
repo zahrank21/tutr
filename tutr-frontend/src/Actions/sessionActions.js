@@ -2,12 +2,12 @@ export const fetchSessions = () => dispatch => {
     fetch('http://localhost:3000/api/v1/sessions')
       .then(res=> res.json())
       .then(sessions => dispatch({
-        type: 'FETCH_REVIEWS',
+        type: 'FETCH_SESSIONS',
         payload: sessions
       }));
 }
 
-export const createSession = (reviewData) => dispatch => {
+export const createSession = (sessionData) => dispatch => {
   console.log('action called')
   fetch('http://localhost:3000/api/v1/sessions', {
     method: 'POST',
@@ -15,11 +15,11 @@ export const createSession = (reviewData) => dispatch => {
       'content-type': 'application/json'
     },
 
-    body: JSON.stringify(reviewData)
+    body: JSON.stringify(sessionData)
   })
     .then(res=> res.json())
-    .then(review => dispatch({
-      type: 'NEW_REVIEW',
-      payload: review
+    .then(session => dispatch({
+      type: 'NEW_SESSION',
+      payload: session
     }))
 }

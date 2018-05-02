@@ -24,6 +24,12 @@ export default function(state = initialState, action) {
         ...state,
         currentUser: action.payload
       }
+
+    case 'CLEAR_SESSION':
+      return {
+        ...state,
+        currentUser: null
+      }
     case 'CHOSEN_SUBJECT':
       console.log(action.payload.subjectId)
       return {

@@ -5,10 +5,12 @@ import Subjects from './Subjects';
 import Login from './Login'
 import Reviews from './Reviews'
 import UserPage from './UserPage'
+import Sessions from './Sessions'
 // redux imports
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import {handleClickLogin, handleClickSubjects, handleClickReviews} from '../Actions/navigationActions'
+import {handleClickLogin, handleClickSubjects, handleClickReviews, handleClickSessions, handleClickUserProfile} from '../Actions/navigationActions'
+import {clearSession} from '../Actions/userActions'
 //material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
@@ -69,6 +71,58 @@ const Navigation = (props) =>  {
     props.dispatchReviews()
   }
 
+  const handleClickSessions = () => {
+    props.dispatchSessions()
+  }
+
+  const handleClickUserProfile = () => {
+    props.dispatchUserPage()
+  }
+
+  const handleClickLogout = () => {
+    props.dispatchClearSession()
+  }
+
+  const handleNavigation = () => {
+    if (props.currentUser){
+        if (props.navigation.userPage){
+          return <UserPage />
+        }
+
+        else if (props.navigation.login){
+          return <Login />
+        }
+
+        else if (props.navigation.subjects){
+          return <Subjects />
+        }
+
+        else if (props.navigation.reviews){
+          return <Reviews />
+        }
+
+        else if (props.navigation.tutors){
+          return <Users />
+        }
+
+        else if (props.navigation.sessions){
+          return <Sessions />
+        }
+
+        else {
+          return null
+        }
+      } else {
+        return (
+          <div>
+            <UserPage />
+            <Login />
+          </div>
+        )
+      }
+
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="absolute" className={classes.appBar}>
@@ -76,9 +130,19 @@ const Navigation = (props) =>  {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Tutr
           </Typography>
-          <Button onClick={handleClickLogin} color="inherit">
-            {props.currentUser ? 'Log Out' : 'Login/Sign Up'}
-          </Button>
+          {props.currentUser ?
+
+            <Button onClick={handleClickLogout} color="inherit">
+              Logout
+            </Button>
+
+            :
+
+            <Button onClick={handleClickLogin} color="inherit">
+              Login/Sign Up
+            </Button>
+          }
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -89,7 +153,7 @@ const Navigation = (props) =>  {
       >
         <div className={classes.toolbar} />
         <List component="nav">
-          <ListItem button >
+          <ListItem button onClick={handleClickUserProfile}>
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
@@ -97,11 +161,11 @@ const Navigation = (props) =>  {
           </ListItem>
           <Divider />
 
-          <ListItem button>
+          <ListItem button onClick={handleClickSessions}>
             <ListItemIcon>
               <AccessAlarmIcon />
             </ListItemIcon>
-            <ListItemText primary="My Schedule" />
+            <ListItemText primary="Sessions" />
           </ListItem>
           <Divider />
 
@@ -126,11 +190,9 @@ const Navigation = (props) =>  {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div>
-          <UserPage />
-          {props.navigation.login ? <Login /> : null}
-          {props.navigation.subjects ? <Subjects /> : null}
-          {props.navigation.reviews ? <Reviews /> : null}
-          {props.navigation.tutors ? <Users /> : null}
+
+          {handleNavigation()}
+
         </div>
       </main>
     </div>
@@ -146,7 +208,10 @@ const mapDispatchToProps = dispatch => {
   return {
     dispatchLogin: () => dispatch(handleClickLogin()),
     dispatchSubjects: () => dispatch(handleClickSubjects()),
-    dispatchReviews: () => dispatch(handleClickReviews())
+    dispatchReviews: () => dispatch(handleClickReviews()),
+    dispatchSessions: () => dispatch(handleClickSessions()),
+    dispatchUserPage: () => dispatch(handleClickUserProfile()),
+    dispatchClearSession: () => dispatch(clearSession())
   }
 }
 

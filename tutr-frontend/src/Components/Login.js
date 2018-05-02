@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { createUser, fetchUsers, setUser } from '../Actions/userActions'
 import { fetchSubjects } from '../Actions/subjectActions'
+import {handleClickUserProfile} from '../Actions/navigationActions'
 //
 
 //material-ui imports
@@ -62,6 +63,8 @@ class Login extends React.Component {
     tutor: false,
     showPassword: false,
     subject: '',
+    signUp: false,
+    login: true
   };
 
   componentWillMount(){
@@ -103,19 +106,32 @@ class Login extends React.Component {
 
     this.props.createUser(user);
     this.props.setUser(user);
+    this.props.handleClickUserProfile();
+
     }
   }
+
+
 
   handleLoginSubmit = (event) => {
     event.preventDefault();
     let allUsernames = this.props.users.map(user => user.username)
     if (allUsernames.includes(this.state.username)){
       let currentUser = this.props.users.find(user => user.username === this.state.username)
+      this.props.handleClickUserProfile();
       return this.props.setUser(currentUser)
     } else {
       alert('user does not exist')
     }
 
+  }
+
+  handleSignUpLoginSwitch = () => {
+    this.setState({
+      ...this.state,
+      signUp: !this.state.signUp,
+      login: !this.state.login
+    })
   }
 
 
@@ -126,6 +142,8 @@ class Login extends React.Component {
     return (
       <div className={classes.root}>
       <Card className={classes.card}>
+        {this.state.signUp ?
+          <div>
         <CardContent>
           <Typography variant="headline" component="h3">
             Sign Up
@@ -202,46 +220,67 @@ class Login extends React.Component {
           />
         </FormControl>
 
+      </CardContent>
         <CardActions>
           <Button onClick={this.handleSignUpSubmit} size="small">Sign Up</Button>
+          <Button onClick={this.handleSignUpLoginSwitch} size="small">Existing User?</Button>
         </CardActions>
+        </div>
+        :
+        null
+        }
+        {this.state.login ?
+        <div>
+          <CardContent>
+          <Typography variant="headline" component="h3">
+            Login
+          </Typography>
 
-        <Typography variant="headline" component="h3">
-          Login
-        </Typography>
-
-        <TextField
-          label="Username"
-          id="Username-Login"
-          className={classNames(classes.margin, classes.textField)}
-          value={this.state.username}
-          onChange={this.handleChange('username')}
-        />
-
-        <FormControl className={classNames(classes.margin, classes.textField)}>
-          <InputLabel htmlFor="login-password">Password</InputLabel>
-          <Input
-            id="login-password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            value={this.state.password}
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                  onMouseDown={this.handleMouseDownPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
+          <TextField
+            label="Username"
+            id="Username-Login"
+            className={classNames(classes.margin, classes.textField)}
+            value={this.state.username}
+            onChange={this.handleChange('username')}
           />
-        </FormControl>
+
+          <FormControl className={classNames(classes.margin, classes.textField)}>
+            <InputLabel htmlFor="login-password">Password</InputLabel>
+            <Input
+              id="login-password"
+              type={this.state.showPassword ? 'text' : 'password'}
+              value={this.state.password}
+              onChange={this.handleChange('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                    onMouseDown={this.handleMouseDownPassword}
+                  >
+                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+            <CardActions>
+              <Button onClick={this.handleLoginSubmit} size="small">Log In</Button>
+              <Button onClick={this.handleSignUpLoginSwitch} size="small">New User?</Button>
+            </CardActions>
           </CardContent>
-          <CardActions>
-            <Button onClick={this.handleLoginSubmit} size="small">Log In</Button>
-          </CardActions>
+
+        </div>
+
+        :
+
+
+
+        null
+
+
+        }
+
         </Card>
       </div>
     );
@@ -252,6 +291,11 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchUserPage: () => dispatch(handleClickUserProfile())
+  }
+}
 const mapStateToProps = state => ({
   subjects: state.subjects.subjectItems,
   users: state.users.cards
@@ -259,4 +303,4 @@ const mapStateToProps = state => ({
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, { createUser, fetchSubjects, fetchUsers, setUser }))(Login)
+  connect(mapStateToProps, { createUser, fetchSubjects, fetchUsers, setUser, handleClickUserProfile }))(Login)

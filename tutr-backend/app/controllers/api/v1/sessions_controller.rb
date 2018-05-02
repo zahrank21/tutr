@@ -34,6 +34,6 @@ class Api::V1::SessionsController < ApplicationController
 
   private
     def session_params
-      params.require(:session).permit(:tutor_id, :student_id, :title, :subject_id)
+      params.require(:session).permit(:tutor_id, :student_id, :title, :subject_id, :completed)
     end
 end

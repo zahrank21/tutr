@@ -12,7 +12,6 @@ class Sessions extends React.Component{
 
   componentWillMount(){
     this.props.fetchSessions();
-    console.log(this.props)
   }
 
 
@@ -33,7 +32,9 @@ class Sessions extends React.Component{
       <Typography variant="display2" gutterBottom>
         Sessions
       </Typography>
+      <GridList>
           {this.mapSessions()}
+      </GridList>
     </div>
     )
   }
@@ -41,7 +42,6 @@ class Sessions extends React.Component{
 
 Sessions.propTypes = {
   fetchSessions: PropTypes.func.isRequired,
-  sessions: PropTypes.array.isRequired,
   newSession: PropTypes.object
 }
 
