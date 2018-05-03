@@ -7,6 +7,7 @@ import { compose } from 'redux'
 import { createUser, fetchUsers, setUser } from '../Actions/userActions'
 import { fetchSubjects } from '../Actions/subjectActions'
 import { fetchReviews } from '../Actions/reviewActions'
+import { fetchSessions } from '../Actions/sessionActions'
 
 import {handleClickUserProfile} from '../Actions/navigationActions'
 //
@@ -71,6 +72,7 @@ class Login extends React.Component {
     this.props.fetchSubjects();
     this.props.fetchUsers();
     this.props.fetchReviews();
+    this.props.fetchSessions();
     console.log('login props', this.props)
   }
 
@@ -304,4 +306,4 @@ const mapStateToProps = state => ({
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, { createUser, fetchSubjects, fetchUsers, fetchReviews, setUser, handleClickUserProfile }))(Login)
+  connect(mapStateToProps, { createUser, fetchSubjects, fetchUsers, fetchReviews, fetchSessions, setUser, handleClickUserProfile }))(Login)

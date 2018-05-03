@@ -5,6 +5,8 @@ import { fetchUsers } from '../Actions/userActions'
 import UserCard from './UserCard.js';
 import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
+
 
 
 
@@ -32,9 +34,14 @@ class Users extends React.Component{
   render () {
     return (
     <div>
-      <Typography variant="display2" gutterBottom>
-        Tutors For You
-      </Typography>
+      <Paper>
+        <br/>
+        <Typography variant="display2" gutterBottom>
+          Tutors
+        </Typography>
+        <br/>
+      </Paper>
+      <br/>
       <GridList>
           {this.mapUsers()}
       </GridList>

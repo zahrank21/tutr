@@ -5,6 +5,8 @@ import { fetchSessions } from '../Actions/sessionActions'
 import SessionCard from './SessionCard.js';
 import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
+
 
 
 
@@ -30,9 +32,14 @@ class Sessions extends React.Component{
   render () {
     return (
     <div>
-      <Typography variant="display2" gutterBottom>
-        Sessions
-      </Typography>
+      <Paper>
+        <br/>
+        <Typography variant="display2" gutterBottom>
+          Sessions
+        </Typography>
+        <br/>
+      </Paper>
+      <br/>
       <GridList>
           {this.mapSessions()}
       </GridList>

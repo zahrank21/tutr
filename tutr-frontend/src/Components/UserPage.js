@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard'
+import SessionCard from './SessionCard'
 
 //material ui
 import { withStyles } from 'material-ui/styles';
@@ -8,6 +9,8 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import classNames from 'classnames';
+import GridList from 'material-ui/GridList';
+import Divider from 'material-ui/Divider';
 
 //
 
@@ -47,6 +50,12 @@ function UserPage(props) {
     return filteredReviews.map(review => <ReviewCard key={review.id} review={review} />)
   }
 
+  let mapTutorSessions = () =>{
+    let sessionsArray = Object.values(props.sessions)
+    let filteredSessions = sessionsArray.filter(session => session.tutor_id === props.currentUser.id)
+    return filteredSessions.map(session => <SessionCard key={session.id} session={session} />)
+  }
+
   return (
     <div>
       {props.currentUser ?
@@ -68,12 +77,33 @@ function UserPage(props) {
           </Paper>
           <div>
             {props.currentUser.tutor ?
+              <div>
+                <br/>
               <Paper>
+                <br/>
                 <Typography variant="headline" component="h3">
                   {`Reviews`}
                 </Typography>
-                {mapTutorReviews()}
-              </Paper> : null }
+                <br/>
+                <GridList justify='center'>
+                  {mapTutorReviews()}
+                </GridList>
+                <br/>
+              </Paper>
+              <Divider />
+              <br/>
+              <Paper>
+                  <br/>
+                <Typography variant="headline" component="h3">
+                  {`Sessions`}
+                </Typography>
+                <br/>
+                <GridList justify='center'>
+                  {mapTutorSessions()}
+                </GridList>
+                <br/>
+              </Paper>
+              </div> : null }
           </div>
         </div>
         :
@@ -98,7 +128,8 @@ UserPage.propTypes = {
 
 const mapStateToProps = state => ({
   currentUser: state.users.currentUser,
-  reviews: state.reviews.reviewItems
+  reviews: state.reviews.reviewItems,
+  sessions: state.sessions.sessionItems,
 })
 
 export default compose(

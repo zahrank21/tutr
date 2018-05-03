@@ -8,6 +8,8 @@ import ReviewCard from './ReviewCard.js';
 import GridList from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import Paper from 'material-ui/Paper';
+
 
 
 const styles = theme => ({
@@ -43,9 +45,14 @@ class Reviews extends React.Component{
     const {classes} = this.props;
     return (
     <div className={classes.root} justify='center'>
-      <Typography variant="display2" gutterBottom>
-        Reviews
-      </Typography>
+      <Paper>
+        <br/>
+        <Typography variant="display2" gutterBottom>
+          Reviews
+        </Typography>
+        <br/>
+      </Paper>
+      <br/>
         <GridList justify='center'>
           {this.mapStudentReviews()}
         </GridList>

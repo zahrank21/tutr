@@ -6,6 +6,7 @@ import SubjectCard from './SubjectCard.js';
 import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 
 
 
@@ -32,9 +33,14 @@ class Subjects extends React.Component{
   render () {
     return (
     <div>
-    <Typography variant="display2" gutterBottom>
-    Subjects
-    </Typography>
+        <Paper>
+          <br/>
+          <Typography variant="display2" gutterBottom>
+            Subjects
+          </Typography>
+          <br/>
+        </Paper>
+        <br/>
         <GridList>
           {this.mapSubjects()}
         </GridList>
