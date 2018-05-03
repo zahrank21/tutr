@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { createUser, fetchUsers, setUser } from '../Actions/userActions'
 import { fetchSubjects } from '../Actions/subjectActions'
+import { fetchReviews } from '../Actions/reviewActions'
+
 import {handleClickUserProfile} from '../Actions/navigationActions'
 //
 
@@ -68,6 +70,7 @@ class Login extends React.Component {
   componentWillMount(){
     this.props.fetchSubjects();
     this.props.fetchUsers();
+    this.props.fetchReviews();
     console.log('login props', this.props)
   }
 
@@ -119,7 +122,7 @@ class Login extends React.Component {
       this.props.handleClickUserProfile();
       return this.props.setUser(currentUser)
     } else {
-      alert('user does not exist')
+      alert('Username already taken')
     }
 
   }
@@ -301,4 +304,4 @@ const mapStateToProps = state => ({
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, { createUser, fetchSubjects, fetchUsers, setUser, handleClickUserProfile }))(Login)
+  connect(mapStateToProps, { createUser, fetchSubjects, fetchUsers, fetchReviews, setUser, handleClickUserProfile }))(Login)

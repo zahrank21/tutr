@@ -31,10 +31,13 @@ class Reviews extends React.Component{
     }
   }
 
-  mapReviews = () => {
+  mapStudentReviews = () => {
     let reviewsArray = Object.values(this.props.reviews)
-    return reviewsArray.map(review => <ReviewCard key={review.id} review={review} />)
+    let filteredReviews = reviewsArray.filter(review => review.student_id === this.props.currentUser.id)
+    return filteredReviews.map(review => <ReviewCard key={review.id} review={review} />)
   }
+
+
 
   render () {
     const {classes} = this.props;
@@ -44,7 +47,7 @@ class Reviews extends React.Component{
         Reviews
       </Typography>
         <GridList justify='center'>
-          {this.mapReviews()}
+          {this.mapStudentReviews()}
         </GridList>
     </div>
     )
@@ -59,7 +62,8 @@ Reviews.propTypes = {
 
 const mapStateToProps = state => ({
   reviews: state.reviews.reviewItems,
-  newReview: state.reviews.reviewItem
+  newReview: state.reviews.reviewItem,
+  currentUser: state.users.currentUser
 })
 
 export default  compose(

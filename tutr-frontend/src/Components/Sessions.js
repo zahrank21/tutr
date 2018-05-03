@@ -23,7 +23,8 @@ class Sessions extends React.Component{
 
   mapSessions = () => {
     let sessionsArray = Object.values(this.props.sessions)
-    return sessionsArray.map(session => <SessionCard key={session.id} session={session} />)
+    let filteredSessions = sessionsArray.filter(session => session.student_id === this.props.currentUser.id)
+    return filteredSessions.map(session => <SessionCard key={session.id} session={session} />)
   }
 
   render () {
@@ -47,7 +48,8 @@ Sessions.propTypes = {
 
 const mapStateToProps = state => ({
   sessions: state.sessions.sessionItems,
-  newSession: state.sessions.sessionItem
+  newSession: state.sessions.sessionItem,
+  currentUser: state.users.currentUser
 })
 
 export default connect(mapStateToProps, { fetchSessions })(Sessions);

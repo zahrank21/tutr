@@ -15,7 +15,7 @@ import { withStyles } from 'material-ui/styles';
 const styles = {
   card: {
     width: 300,
-    height: 400
+    height: 300
   },
   media: {
     height: 0,
@@ -70,9 +70,6 @@ const SessionCard = props => {
           </Typography>
           <Typography component="p">
             Subject: {`${getSubjectName(props.session.subject_id)}`}
-          </Typography>
-          <Typography component="p">
-            Status: {props.session.completed ? 'Completed' : 'Pending'}
           </Typography>
         </CardContent>
       </Card>
