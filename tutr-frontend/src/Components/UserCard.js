@@ -15,7 +15,7 @@ import { withStyles } from 'material-ui/styles';
 
 const styles = {
   card: {
-    width: 300,
+    width: 350,
   },
   media: {
     height: 0,

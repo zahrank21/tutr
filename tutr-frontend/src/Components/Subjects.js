@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import UserCard from './UserCard'
+
 import { connect } from 'react-redux'
 import { fetchSubjects } from '../Actions/subjectActions'
 import SubjectCard from './SubjectCard.js';
@@ -7,11 +9,19 @@ import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
+import classNames from 'classnames';
+import TextField from 'material-ui/TextField';
+
 
 
 
 
 class Subjects extends React.Component{
+
+  state = {
+    query: ''
+  }
+
 
   componentWillMount(){
     this.props.fetchSubjects();
@@ -30,13 +40,34 @@ class Subjects extends React.Component{
     return subjectsArray.map(subject => <SubjectCard key={subject.id} subject={subject} />)
   }
 
-  render () {
-    return (
-    <div>
+  handleTutorSearchChange = (event) => {
+    this.setState({
+      query: event.target.value
+    })
+  }
+
+  mapUsers = () => {
+    let filteredUsers = this.props.users.filter(user => user.username.includes(this.state.query) && user.tutor)
+    console.log(filteredUsers)
+    return filteredUsers.map(user => <UserCard key={user.id} user={user}/>)
+  }
+
+  renderSubjects = () => {
+    if (this.state.query){
+      return(
+      <div>
+        <GridList>
+          {this.mapUsers()}
+        </GridList>
+      </div>
+      )
+    } else {
+      return(
+        <div>
         <Paper>
           <br/>
           <Typography variant="display2" gutterBottom>
-            Subjects
+            Browse By Subject
           </Typography>
           <br/>
         </Paper>
@@ -44,6 +75,33 @@ class Subjects extends React.Component{
         <GridList>
           {this.mapSubjects()}
         </GridList>
+      </div>
+      )
+    }
+  }
+
+  render () {
+    return (
+    <div>
+      <Paper>
+        <Typography variant="display2" gutterBottom>
+          Search for Tutor
+        </Typography>
+
+        <TextField
+          label="Search"
+          id="Tutor-Search"
+
+          value={this.state.query}
+          onChange={this.handleTutorSearchChange}
+        />
+        <br/>
+        <br/>
+      </Paper>
+      <br/>
+      <div>
+        {this.renderSubjects()}
+      </div>
     </div>
     )
   }
@@ -57,7 +115,8 @@ Subjects.propTypes = {
 
 const mapStateToProps = state => ({
   subjects: state.subjects.subjectItems,
-  newSubject: state.subjects.subjectItem
+  newSubject: state.subjects.subjectItem,
+  users: state.users.cards,
 })
 
 export default connect(mapStateToProps, { fetchSubjects })(Subjects);

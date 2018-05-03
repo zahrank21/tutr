@@ -107,6 +107,7 @@ class ReviewForm extends React.Component {
           className={classNames(classes.margin, classes.textField)}
           onChange={this.handleChange('title')}
           value={this.state.title}
+          multiline={true}
         />
 
       <FormControl onChange={this.handleChange} className={classNames(classes.margin, classes.textField)}>
@@ -115,6 +116,7 @@ class ReviewForm extends React.Component {
             id='Body'
             value={this.state.body}
             onChange={this.handleChange('body')}
+            multiline={true}
           />
         </FormControl>
 

@@ -173,7 +173,7 @@ const Navigation = (props) =>  {
             <ListItemIcon>
               <FaceIcon />
             </ListItemIcon>
-            <ListItemText primary="Subjects" />
+            <ListItemText primary="Browse Tutors" />
           </ListItem>
           <Divider />
 
