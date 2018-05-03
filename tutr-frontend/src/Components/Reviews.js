@@ -16,6 +16,9 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
+  grid: {
+
+  }
 });
 
 class Reviews extends React.Component{
@@ -44,7 +47,7 @@ class Reviews extends React.Component{
   render () {
     const {classes} = this.props;
     return (
-    <div className={classes.root} justify='center'>
+    <div className={classes.root} alignContent='center'>
       <Paper>
         <br/>
         <Typography variant="display2" gutterBottom>
@@ -53,7 +56,7 @@ class Reviews extends React.Component{
         <br/>
       </Paper>
       <br/>
-        <GridList justify='center'>
+        <GridList alignItems='center'>
           {this.mapStudentReviews()}
         </GridList>
     </div>

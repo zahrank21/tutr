@@ -55,8 +55,8 @@ class Subjects extends React.Component{
   renderSubjects = () => {
     if (this.state.query){
       return(
-      <div>
-        <GridList>
+      <div alignContent='center'>
+        <GridList alignContent='center'>
           {this.mapUsers()}
         </GridList>
       </div>
@@ -84,6 +84,7 @@ class Subjects extends React.Component{
     return (
     <div>
       <Paper>
+        <br/>
         <Typography variant="display2" gutterBottom>
           Search for Tutor
         </Typography>

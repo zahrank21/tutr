@@ -21,6 +21,10 @@ const styles = {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
+  }
 };
 
 class UserCard extends React.Component{
@@ -67,8 +71,10 @@ class UserCard extends React.Component{
             {this.props.user.tutor ? 'Tutor' : 'Student'}
           </Typography>
           <CardActions>
-            <Button onClick={this.handleTutorReviewClick} size="small">Review</Button>
-            <Button onClick={this.handleBookSessionClick} size="small">Book Session</Button>
+            <div justify={'center'}>
+              <Button justify={'center'} onClick={this.handleTutorReviewClick} size="small">Review</Button>
+              <Button justify={'center'} onClick={this.handleBookSessionClick} size="small">Book Session</Button>
+            </div>
           </CardActions>
           {this.state.reviewClick ? <ReviewForm tutor={this.props.user.id} /> : null}
         </CardContent>
