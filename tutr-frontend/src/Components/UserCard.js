@@ -38,7 +38,7 @@ class UserCard extends React.Component{
       title: 'Session',
       tutor_id: this.props.user.id,
       student_id: this.props.currentUser.id,
-      subject_id: this.props.currentUser.subject_id,
+      subject_id: this.props.user.subject_id,
       completed: false
     });
   }
