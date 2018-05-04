@@ -25,24 +25,20 @@ const styles = {
 
 const SessionCard = props => {
 
-  console.log(props)
   const { classes } = props;
 
   const componentWillMount = () => {
     props.fetchSubjects();
     props.fetchUsers();
-    console.log('SessionCard props', props)
   }
 
   const getUsername = (id) => {
     let foundUser = props.users.filter(user => user.id == id)
-    console.log(foundUser)
     return foundUser[0].username
   }
 
   const getSubjectName = (id) => {
     let foundSubject = props.subjects.filter(subject => subject.id == id)
-    console.log(foundSubject)
     return foundSubject[0].name
   }
 

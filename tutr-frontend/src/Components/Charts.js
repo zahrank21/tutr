@@ -37,22 +37,46 @@ class Charts extends React.Component{
       }
     }
 
+    renderChart = () => {
+      if (this.props.type === 'Bar'){
+        return(
+          <div className='chart'>
+            <Bar
+              data={this.state.chartData}
+              options={{
+                maintainAspectRatio: true,
+                scales: {
+                 yAxes: [{
+                   ticks: {
+                     beginAtZero: true
+                   }
+                 }]
+                }
+              }}
+            />
+          </div>
+        )
+      } else {
+        return (
+          <div className='chart'>
+            <Pie
+              data={this.state.chartData}
+              options={{
+                maintainAspectRatio: true,
+              }}
+            />
+          </div>
+        )
+      }
+    }
+
+
+
+
     render(){
       return(
-        <div className='chart'>
-          <Bar
-            data={this.state.chartData}
-            options={{
-              maintainAspectRatio: true,
-              scales: {
-               yAxes: [{
-                 ticks: {
-                   beginAtZero: true
-                 }
-               }]
-              }
-            }}
-          />
+        <div>
+          {this.renderChart()}
         </div>
       )
     }

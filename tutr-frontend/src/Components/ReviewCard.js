@@ -48,7 +48,7 @@ const ReviewCard = props => {
 
     <div>
       <div>
-      <Card className={classes.card} alignContent= 'center'>
+      <Card className={classes.card} aligncontent= 'center'>
         <CardMedia
           className={classes.media}
           image= {`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 500)}`}
