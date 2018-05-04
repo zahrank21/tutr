@@ -6,10 +6,11 @@ import Login from './Login'
 import Reviews from './Reviews'
 import UserPage from './UserPage'
 import Sessions from './Sessions'
+import MyTutorProfile from './MyTutorProfile'
 // redux imports
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import {handleClickLogin, handleClickSubjects, handleClickReviews, handleClickSessions, handleClickUserProfile} from '../Actions/navigationActions'
+import {handleClickLogin, handleClickSubjects, handleClickReviews, handleClickSessions, handleClickUserProfile, handleClickMyTutorProfile} from '../Actions/navigationActions'
 import {clearSession} from '../Actions/userActions'
 //material-ui imports
 import { withStyles } from 'material-ui/styles';
@@ -27,6 +28,8 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FaceIcon from '@material-ui/icons/Face';
+import SchoolIcon from '@material-ui/icons/School';
+
 //
 
 const drawerWidth = 240;
@@ -83,6 +86,28 @@ const Navigation = (props) =>  {
     props.dispatchClearSession()
   }
 
+  const handleClickMyTutorProfile = () => {
+    props.dispatchMyTutorProfile()
+  }
+
+  const renderMyTutorProfile = () => {
+    if (props.currentUser){
+      if (props.currentUser.tutor){
+        return (
+          <div>
+            <ListItem button onClick={handleClickMyTutorProfile}>
+              <ListItemIcon>
+                <SchoolIcon />
+              </ListItemIcon>
+              <ListItemText primary="Tutor Hub" />
+            </ListItem>
+            <Divider />
+          </div>
+        )
+      }
+    }
+  }
+
   const handleNavigation = () => {
     if (props.currentUser){
         if (props.navigation.userPage){
@@ -107,6 +132,10 @@ const Navigation = (props) =>  {
 
         else if (props.navigation.sessions){
           return <Sessions />
+        }
+
+        else if (props.navigation.myTutorPage){
+          return <MyTutorProfile />
         }
 
         else {
@@ -184,6 +213,8 @@ const Navigation = (props) =>  {
             <ListItemText primary="My Reviews" />
           </ListItem>
           <Divider />
+
+            {renderMyTutorProfile()}
         </List>
       </Drawer>
 
@@ -212,7 +243,8 @@ const mapDispatchToProps = dispatch => {
     dispatchReviews: () => dispatch(handleClickReviews()),
     dispatchSessions: () => dispatch(handleClickSessions()),
     dispatchUserPage: () => dispatch(handleClickUserProfile()),
-    dispatchClearSession: () => dispatch(clearSession())
+    dispatchClearSession: () => dispatch(clearSession()),
+    dispatchMyTutorProfile: () => dispatch(handleClickMyTutorProfile())
   }
 }
 

@@ -42,7 +42,7 @@ const styles = theme => ({
 
 });
 
-function UserPage(props) {
+function MyTutorProfile(props) {
   const { classes } = props;
   console.log('user page props', props)
 
@@ -131,54 +131,6 @@ function UserPage(props) {
 
 
   return (
-    <div>
-      {props.currentUser ?
-        <div>
-          <Paper className={classes.root} elevation={4}>
-            <Typography variant="headline" component="h3">
-              {`${props.currentUser.username} Profile`}
-            </Typography>
-            <div className={classes.row}>
-
-              <Avatar
-                src={`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 100 )}`}
-                className={classNames(classes.avatar, classes.bigAvatar)}
-              />
-           </div>
-            <Typography component="h4">
-              {`${props.currentUser.first_name} ${props.currentUser.last_name}`}
-            </Typography>
-          </Paper>
-          <br/>
-            <Paper>
-              <br/>
-              <Typography variant="headline" component="h3">
-                {`Favorite Subjects`}
-              </Typography>
-              <br/>
-            </Paper>
-            <br/>
-          <Paper>
-            <br/>
-              <Charts type={'Bar'} title={'Number of Sessions'} data={studentSubjects()}/>
-            <br/>
-          </Paper>
-          <br/>
-            <Paper>
-              <br/>
-              <Typography variant="headline" component="h3">
-                {`Favorite Tutors`}
-              </Typography>
-              <br/>
-            </Paper>
-            <br/>
-          <Paper>
-            <br/>
-              <Charts type={'Bar'} title={'Number of Sessions'} data={studentTutors()}/>
-            <br/>
-          </Paper>
-          <div>
-            {props.currentUser.tutor ?
               <div>
                 <br/>
                 <Paper>
@@ -226,26 +178,14 @@ function UserPage(props) {
                 <br/>
               </Paper>
               <br/>
-              </div> : null }
-          </div>
-        </div>
-        :
+            </div>
 
-        <Paper className={classes.root} elevation={4}>
-          <Typography variant="headline" component="h3">
-            Please Log In or Sign Up to Continue
-          </Typography>
-        </Paper>
-
-        }
-
-    </div>
   );
 }
 
 
 
-UserPage.propTypes = {
+MyTutorProfile.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -259,4 +199,4 @@ const mapStateToProps = state => ({
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps))(UserPage);
+  connect(mapStateToProps))(MyTutorProfile);

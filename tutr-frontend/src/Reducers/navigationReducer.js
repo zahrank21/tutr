@@ -4,7 +4,8 @@ const initialState = {
   sessions: false,
   subjects: false,
   reviews: false,
-  tutors: false
+  tutors: false,
+  myTutorPage: false,
 }
 
 export default function(state = initialState, action) {
@@ -37,8 +38,13 @@ export default function(state = initialState, action) {
         sessions: false,
         subjects: false,
         reviews: false,
-        tutors: true
+        tutors: true,
+        myTutorPage: false
       }
+
+    case 'MY_TUTOR_PAGE':
+      console.log('reducer hit')
+      return action.payload
 
     default:
       return state;

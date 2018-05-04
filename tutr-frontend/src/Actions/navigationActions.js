@@ -9,6 +9,7 @@ export let handleClickLogin = () => {
       subjects: false,
       reviews: false,
       tutors: false,
+      myTutorPage:false,
     }
   }
 }
@@ -24,6 +25,7 @@ export let handleClickSubjects = () => {
       subjects: true,
       reviews: false,
       tutors: false,
+      myTutorPage:false,
     }
   }
 }
@@ -39,6 +41,7 @@ export let handleClickReviews = () => {
       subjects: false,
       reviews: true,
       tutors: false,
+      myTutorPage:false,
     }
   }
 }
@@ -54,6 +57,7 @@ export let handleClickTutors = () => {
       subjects: false,
       reviews: false,
       tutors: true,
+      myTutorPage:false,
 
     }
   }
@@ -70,6 +74,7 @@ export let handleClickSessions = () => {
       subjects: false,
       reviews: false,
       tutors: false,
+      myTutorPage:false,
     }
   }
 }
@@ -85,6 +90,23 @@ export let handleClickUserProfile = () => {
       subjects: false,
       reviews: false,
       tutors: false,
+      myTutorPage:false,
+    }
+  }
+}
+
+export let handleClickMyTutorProfile = () => {
+  console.log('action hit')
+  return{
+    type: 'MY_TUTOR_PAGE',
+    payload: {
+      login: false,
+      userPage: false,
+      sessions: false,
+      subjects: false,
+      reviews: false,
+      tutors: false,
+      myTutorPage: true,
     }
   }
 }
