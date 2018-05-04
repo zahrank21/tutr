@@ -17,6 +17,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   grid: {
+    alignItems: 'center',
 
   }
 });

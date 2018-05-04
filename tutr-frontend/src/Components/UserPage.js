@@ -17,6 +17,9 @@ import Divider from 'material-ui/Divider';
 //redux
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { fetchSubjects } from '../Actions/subjectActions'
+import { fetchSessions } from '../Actions/sessionActions'
+import { fetchUsers } from '../Actions/userActions'
 //
 
 const styles = theme => ({
@@ -43,6 +46,11 @@ function UserPage(props) {
   const { classes } = props;
   console.log('user page props', props)
 
+  const componentWillMount = () => {
+    this.props.fetchSubjects();
+    this.props.fetchSessions();
+    this.props.fetchUsers();
+  }
 
   let mapTutorReviews = () => {
     let reviewsArray = Object.values(props.reviews)
@@ -59,23 +67,45 @@ function UserPage(props) {
   let studentSubjects = () => {
     let sessionsArray = Object.values(props.sessions)
     let studentSessions = sessionsArray.filter(session => session.student_id === props.currentUser.id)
-    let subjectsArray = Object.values(props.subjects)
-    console.log(studentSessions)
 
     const getSubjectName = (id) => {
       let foundSubject = props.subjects.filter(subject => subject.id == id)
-      console.log(foundSubject)
       return foundSubject[0].name
     }
 
     let i;
-    let subjectIdCountObject = {}
+    let subjectCountObject = {}
     for (i = 0; i < studentSessions.length; i++){
-        subjectIdCountObject[getSubjectName(studentSessions[i].subject_id)] = 0
+        subjectCountObject[getSubjectName(studentSessions[i].subject_id)] = 0
     }
 
+    for (i = 0; i < studentSessions.length; i++){
+        subjectCountObject[getSubjectName(studentSessions[i].subject_id)]++
+    }
+    return subjectCountObject
+  }
 
-    console.log(subjectIdCountObject)
+  let studentTutors = () => {
+    let sessionsArray = Object.values(props.sessions)
+    let studentSessions = sessionsArray.filter(session => session.student_id === props.currentUser.id)
+
+    const getUsername = (id) => {
+      let foundUser = props.users.filter(user => user.id == id)
+      console.log(foundUser)
+      return foundUser[0].username
+    }
+
+    let i;
+    let tutorCountObject = {}
+    for (i = 0; i < studentSessions.length; i++){
+        tutorCountObject[getUsername(studentSessions[i].tutor_id)] = 0
+    }
+
+    for (i = 0; i < studentSessions.length; i++){
+        tutorCountObject[getUsername(studentSessions[i].tutor_id)]++
+    }
+    console.log(tutorCountObject)
+    return tutorCountObject
   }
 
 
@@ -91,7 +121,7 @@ function UserPage(props) {
             <div className={classes.row}>
 
               <Avatar
-                src={`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 500 )}`}
+                src={`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 100 )}`}
                 className={classNames(classes.avatar, classes.bigAvatar)}
               />
            </div>
@@ -110,8 +140,21 @@ function UserPage(props) {
             <br/>
           <Paper>
             <br/>
-              <Charts />
-              {studentSubjects()}
+              <Charts title={'Number of Sessions'} data={studentSubjects()}/>
+            <br/>
+          </Paper>
+          <br/>
+            <Paper>
+              <br/>
+              <Typography variant="headline" component="h3">
+                {`Favorite Tutors`}
+              </Typography>
+              <br/>
+            </Paper>
+            <br/>
+          <Paper>
+            <br/>
+              <Charts title={'Number of Sessions'} data={studentTutors()}/>
             <br/>
           </Paper>
           <div>
@@ -177,7 +220,8 @@ const mapStateToProps = state => ({
   currentUser: state.users.currentUser,
   reviews: state.reviews.reviewItems,
   sessions: state.sessions.sessionItems,
-  subjects: state.subjects.subjectItems
+  subjects: state.subjects.subjectItems,
+  users: state.users.cards
 })
 
 export default compose(

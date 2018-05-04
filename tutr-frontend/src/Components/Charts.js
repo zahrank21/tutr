@@ -10,13 +10,24 @@ class Charts extends React.Component{
     constructor(props){
       super(props);
 
+
+      this.graphColorizer = () => {
+        let colors = ['pink', 'blue', 'orange', 'grey', 'lightblue', 'darkblue', 'red']
+        let colorsArray = []
+        let i
+        console.log(Object.keys(this.props.data).length)
+        for (i=0; i < Object.keys(this.props.data).length; i++){
+          colorsArray.push(colors[Math.floor(Math.random() * colors.length)])
+        }
+        return colorsArray
+      }
       this.state = {
         chartData: {
-          labels: ['Instagram', 'Facebook', 'Reddit', 'LinkedIn', 'Twitter', 'Tumblr', 'Google Plus'],
+          labels: Object.keys(this.props.data),
           datasets: [{
-            label: 'Monthly Active Users',
-            data: [800000000, 2130000000, 250000000, 106000000, 330000000, 115000000, 111000000],
-            backgroundColor: ['pink', 'blue', 'orange', 'grey', 'lightblue', 'darkblue', 'red'],
+            label: props.title,
+            data: Object.values(this.props.data),
+            backgroundColor: this.graphColorizer(),
             borderWidth: 1,
             borderColor: 'grey',
             hoverBorderWidth: 3,
@@ -32,7 +43,14 @@ class Charts extends React.Component{
           <Bar
             data={this.state.chartData}
             options={{
-              maintainAspectRatio: true
+              maintainAspectRatio: true,
+              scales: {
+               yAxes: [{
+                 ticks: {
+                   beginAtZero: true
+                 }
+               }]
+              }
             }}
           />
         </div>
