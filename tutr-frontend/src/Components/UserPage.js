@@ -178,55 +178,6 @@ function UserPage(props) {
             <br/>
           </Paper>
           <div>
-            {props.currentUser.tutor ?
-              <div>
-                <br/>
-                <Paper>
-                  <br/>
-                  <Typography variant="headline" component="h3">
-                    {`Tutor Hub`}
-                  </Typography>
-                  <br/>
-                </Paper>
-                <br/>
-              <Paper>
-                <br/>
-                <Typography variant="headline" component="h3">
-                  {`Reviews`}
-                </Typography>
-                <br/>
-              </Paper>
-              <br/>
-              <Paper>
-                <br/>
-                <Charts type={'Pie'} title={'Number of Sessions'} data={tutorReviewScores()}/>
-                <br/>
-              </Paper>
-              <br/>
-              <Paper>
-                <GridList aligncontent='center'>
-                  {mapTutorReviews()}
-                </GridList>
-                <br/>
-              </Paper>
-              <Divider />
-              <br/>
-              <Paper>
-                  <br/>
-                <Typography variant="headline" component="h3">
-                  {`Sessions`}
-                </Typography>
-                <br/>
-                </Paper>
-                <br/>
-                <Paper>
-                <GridList justify='center'>
-                  {mapTutorSessions()}
-                </GridList>
-                <br/>
-              </Paper>
-              <br/>
-              </div> : null }
           </div>
         </div>
         :

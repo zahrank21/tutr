@@ -182,6 +182,9 @@ const Navigation = (props) =>  {
       >
         <div className={classes.toolbar} />
         <List component="nav">
+          
+          {renderMyTutorProfile()}
+
           <ListItem button onClick={handleClickUserProfile}>
             <ListItemIcon>
               <AccountCircleIcon />
@@ -214,7 +217,6 @@ const Navigation = (props) =>  {
           </ListItem>
           <Divider />
 
-            {renderMyTutorProfile()}
         </List>
       </Drawer>
 
