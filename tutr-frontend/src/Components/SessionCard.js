@@ -9,6 +9,8 @@ import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import Grid from 'material-ui/Grid';
+
 
 
 
@@ -47,8 +49,7 @@ const SessionCard = props => {
 
   return (
 
-    <div>
-      <div>
+    <Grid item>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -69,8 +70,7 @@ const SessionCard = props => {
           </Typography>
         </CardContent>
       </Card>
-      </div>
-    </div>
+    </Grid>
   )
 }
 

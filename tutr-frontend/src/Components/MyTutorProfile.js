@@ -12,6 +12,7 @@ import Avatar from 'material-ui/Avatar';
 import classNames from 'classnames';
 import GridList from 'material-ui/GridList';
 import Divider from 'material-ui/Divider';
+import Grid from 'material-ui/Grid';
 //
 
 //redux
@@ -20,6 +21,7 @@ import { compose } from 'redux'
 import { fetchSubjects } from '../Actions/subjectActions'
 import { fetchSessions } from '../Actions/sessionActions'
 import { fetchUsers } from '../Actions/userActions'
+
 //
 
 const styles = theme => ({
@@ -141,13 +143,6 @@ function MyTutorProfile(props) {
                   <br/>
                 </Paper>
                 <br/>
-              <Paper>
-                <br/>
-                <Typography variant="headline" component="h3">
-                  {`Reviews`}
-                </Typography>
-                <br/>
-              </Paper>
               <br/>
               <Paper>
                 <br/>
@@ -161,9 +156,22 @@ function MyTutorProfile(props) {
               </Paper>
               <br/>
               <Paper>
-                <GridList aligncontent='center'>
-                  {mapTutorReviews()}
-                </GridList>
+                <br/>
+                <Typography variant="headline" component="h3">
+                  {`Reviews`}
+                </Typography>
+                <br/>
+              </Paper>
+              <br/>
+              <Paper>
+                <br/>
+                <Grid>
+                  <Grid container className={classes.demo} justify="center" spacing={8}>
+
+                    {mapTutorReviews()}
+                  </Grid>
+
+                </Grid>
                 <br/>
               </Paper>
               <Divider />
@@ -177,9 +185,12 @@ function MyTutorProfile(props) {
                 </Paper>
                 <br/>
                 <Paper>
-                <GridList justify='center'>
-                  {mapTutorSessions()}
-                </GridList>
+                  <br/>
+                <Grid>
+                  <Grid container className={classes.demo} justify="center" spacing={8}>
+                    {mapTutorSessions()}
+                  </Grid>
+                </Grid>
                 <br/>
               </Paper>
               <br/>

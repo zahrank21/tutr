@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import UserCard from './UserCard'
 
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+
 import { fetchSubjects } from '../Actions/subjectActions'
 import SubjectCard from './SubjectCard.js';
 import GridList, { GridListTile } from 'material-ui/GridList';
@@ -12,9 +14,19 @@ import Paper from 'material-ui/Paper';
 import classNames from 'classnames';
 import TextField from 'material-ui/TextField';
 
+import { withStyles } from 'material-ui/styles';
 
 
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  grid: {
+    alignItems: 'center',
+
+  }
+});
 
 class Subjects extends React.Component{
 
@@ -53,13 +65,15 @@ class Subjects extends React.Component{
   }
 
   renderSubjects = () => {
+    const{classes} = this.props;
+
     if (this.state.query){
       return(
-      <div alignContent='center'>
-        <GridList alignContent='center'>
+        <Grid>
+          <Grid container className={classes.demo} justify="center" spacing={8}>
           {this.mapUsers()}
-        </GridList>
-      </div>
+        </Grid>
+      </Grid>
       )
     } else {
       return(
@@ -72,17 +86,20 @@ class Subjects extends React.Component{
           <br/>
         </Paper>
         <br/>
-        <GridList>
-          {this.mapSubjects()}
-        </GridList>
+          <Grid>
+            <Grid container className={classes.demo} justify="center" spacing={8}>
+              {this.mapSubjects()}
+            </Grid>
+          </Grid>
       </div>
       )
     }
   }
 
   render () {
+    const{classes} = this.props;
     return (
-    <div>
+    <div className={classes.root} alignContent='center'>
       <Paper>
         <br/>
         <Typography variant="display2" gutterBottom>
@@ -120,4 +137,6 @@ const mapStateToProps = state => ({
   users: state.users.cards,
 })
 
-export default connect(mapStateToProps, { fetchSubjects })(Subjects);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, { fetchSubjects }))(Subjects);

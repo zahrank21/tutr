@@ -1,13 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+
 import { fetchSessions } from '../Actions/sessionActions'
 import SessionCard from './SessionCard.js';
 import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
 
 
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  grid: {
+    alignItems: 'center',
+
+  }
+});
 
 
 class Sessions extends React.Component{
@@ -30,8 +44,9 @@ class Sessions extends React.Component{
   }
 
   render () {
+    const{classes} = this.props;
     return (
-    <div>
+    <div className={classes.root} alignContent='center'>
       <Paper>
         <br/>
         <Typography variant="display2" gutterBottom>
@@ -40,13 +55,11 @@ class Sessions extends React.Component{
         <br/>
       </Paper>
       <br/>
-      <div className='sessions-container'>
-        <div></div>
-        <GridList>
+        <Grid>
+          <Grid container className={classes.demo} justify="center" spacing={8}>
             {this.mapSessions()}
-        </GridList>
-        <div></div>
-      </div>
+          </Grid>
+        </Grid>
     </div>
     )
   }
@@ -63,4 +76,6 @@ const mapStateToProps = state => ({
   currentUser: state.users.currentUser
 })
 
-export default connect(mapStateToProps, { fetchSessions })(Sessions);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, { fetchSessions }))(Sessions);

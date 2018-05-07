@@ -10,6 +10,8 @@ import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import Grid from 'material-ui/Grid';
+
 
 
 
@@ -53,8 +55,7 @@ class UserCard extends React.Component{
   const { classes } = this.props;
   return (
 
-    <div>
-      <div>
+    <Grid item>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -79,8 +80,7 @@ class UserCard extends React.Component{
           {this.state.reviewClick ? <ReviewForm tutor={this.props.user.id} /> : null}
         </CardContent>
       </Card>
-      </div>
-    </div>
+    </Grid>
   )
   }
 }

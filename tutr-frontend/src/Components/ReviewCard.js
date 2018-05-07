@@ -9,6 +9,8 @@ import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import Grid from 'material-ui/Grid';
+
 
 
 
@@ -46,33 +48,34 @@ const ReviewCard = props => {
   const { classes } = props;
   return (
 
-    <div>
-      <div>
-      <Card className={classes.card} aligncontent= 'center'>
-        <CardMedia
-          className={classes.media}
-          image= {`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 500)}`}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            {`${props.review.title}`}
-          </Typography>
-          <Typography component="p">
-            {`${props.review.body}`}
-          </Typography>
-          <Typography component="p">
-            Tutor: {`${getUsername(props.review.tutor_id)}`}
-          </Typography>
-          <Typography component="p">
-            Student: {`${getUsername(props.review.student_id)}`}
-          </Typography>
-          <Typography component="p">
-            Rating: {`${props.review.score}`}
-          </Typography>
-        </CardContent>
-      </Card>
-      </div>
-    </div>
+
+      <Grid item>
+        <Card className={classes.card} aligncontent= 'center'>
+          <CardMedia
+            className={classes.media}
+            image= {`https://picsum.photos/2000/2000?image=${Math.floor(Math.random() * 500)}`}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              {`${props.review.title}`}
+            </Typography>
+            <Typography component="p">
+              {`${props.review.body}`}
+            </Typography>
+            <Typography component="p">
+              Tutor: {`${getUsername(props.review.tutor_id)}`}
+            </Typography>
+            <Typography component="p">
+              Student: {`${getUsername(props.review.student_id)}`}
+            </Typography>
+            <Typography component="p">
+              Rating: {`${props.review.score}`}
+            </Typography>
+          </CardContent>
+        </Card>
+
+      </Grid>
+
   )
 }
 

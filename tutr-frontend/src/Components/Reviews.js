@@ -6,6 +6,7 @@ import { compose } from 'redux'
 import { fetchReviews } from '../Actions/reviewActions'
 import ReviewCard from './ReviewCard.js';
 import GridList from 'material-ui/GridList';
+import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -57,9 +58,12 @@ class Reviews extends React.Component{
         <br/>
       </Paper>
       <br/>
-        <GridList alignItems='center'>
-          {this.mapStudentReviews()}
-        </GridList>
+        <Grid >
+          <Grid container className={classes.demo} justify="center" spacing={8}>
+
+            {this.mapStudentReviews()}
+          </Grid>
+        </Grid>
     </div>
     )
   }

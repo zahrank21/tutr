@@ -41,7 +41,7 @@ const SubjectCard = props => {
   const { classes } = props;
   return (
 
-    <div>
+    <Grid item>
       <Card onClick={handleSubjectCardClick} className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -53,7 +53,9 @@ const SubjectCard = props => {
           </Typography>
         </CardContent>
       </Card>
-    </div>
+    </Grid>
+
+
   )
 }
 

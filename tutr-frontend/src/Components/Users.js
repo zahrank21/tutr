@@ -2,12 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../Actions/userActions'
+import { compose } from 'redux'
+
+
 import UserCard from './UserCard.js';
 import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
 
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  grid: {
+    alignItems: 'center',
+
+  }
+});
 
 
 class Users extends React.Component{
@@ -32,6 +46,8 @@ class Users extends React.Component{
   }
 
   render () {
+    const{classes} = this.props;
+
     return (
     <div>
       <Paper>
@@ -42,9 +58,11 @@ class Users extends React.Component{
         <br/>
       </Paper>
       <br/>
-      <GridList>
+      <Grid>
+        <Grid container className={classes.demo} justify="center" spacing={8}>
           {this.mapUsers()}
-      </GridList>
+        </Grid>
+      </Grid>
     </div>
     )
   }
@@ -62,4 +80,6 @@ const mapStateToProps = state => ({
   chosenSubject: state.users.chosenSubject
 })
 
-export default connect(mapStateToProps, { fetchUsers })(Users);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, { fetchUsers }))(Users);
