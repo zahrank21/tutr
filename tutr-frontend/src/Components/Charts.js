@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-import {Bar, Doughnut, Line, Pie} from 'react-chartjs-2'
+import {Bar, Doughnut, Line, Pie, HorizontalBar} from 'react-chartjs-2'
 
 
 class Charts extends React.Component{
@@ -17,8 +17,14 @@ class Charts extends React.Component{
         let i
         console.log(Object.keys(this.props.data).length)
         for (i=0; i < Object.keys(this.props.data).length; i++){
-          colorsArray.push(colors[Math.floor(Math.random() * colors.length)])
+          if (i >= colors.length){
+            colorsArray.push(colors[i % colors.length])
+            console.log(i % colors.length)
+          } else {
+            colorsArray.push(colors[i])
+          }
         }
+        console.log(colorsArray)
         return colorsArray
       }
       this.state = {
@@ -59,10 +65,17 @@ class Charts extends React.Component{
       } else {
         return (
           <div className='chart'>
-            <Pie
+            <HorizontalBar
               data={this.state.chartData}
               options={{
                 maintainAspectRatio: true,
+                scales: {
+                 xAxes: [{
+                   ticks: {
+                     beginAtZero: true
+                   }
+                 }]
+                }
               }}
             />
           </div>

@@ -40,9 +40,13 @@ class Sessions extends React.Component{
         <br/>
       </Paper>
       <br/>
-      <GridList>
-          {this.mapSessions()}
-      </GridList>
+      <div className='sessions-container'>
+        <div></div>
+        <GridList>
+            {this.mapSessions()}
+        </GridList>
+        <div></div>
+      </div>
     </div>
     )
   }

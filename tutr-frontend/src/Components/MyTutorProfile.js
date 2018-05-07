@@ -72,11 +72,11 @@ function MyTutorProfile(props) {
     let reviewScoreCount = {}
 
     for (i=0; i < filteredReviews.length; i++){
-      reviewScoreCount[filteredReviews[i].score] = 0
+      reviewScoreCount[`${filteredReviews[i].score} Stars`] = 0
     }
 
     for (i=0; i < filteredReviews.length; i++){
-      reviewScoreCount[filteredReviews[i].score]++
+      reviewScoreCount[`${filteredReviews[i].score} Stars`]++
     }
     return reviewScoreCount
   }
@@ -150,6 +150,11 @@ function MyTutorProfile(props) {
               </Paper>
               <br/>
               <Paper>
+                <br/>
+                <Typography variant="headline" component="h3">
+                  {`Ratings`}
+                </Typography>
+                <br/>
                 <br/>
                 <Charts type={'Pie'} title={'Number of Sessions'} data={tutorReviewScores()}/>
                 <br/>
