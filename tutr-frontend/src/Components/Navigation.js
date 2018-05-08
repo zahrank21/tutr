@@ -7,10 +7,11 @@ import Reviews from './Reviews'
 import UserPage from './UserPage'
 import Sessions from './Sessions'
 import MyTutorProfile from './MyTutorProfile'
+import Chat from './Chat'
 // redux imports
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import {handleClickLogin, handleClickSubjects, handleClickReviews, handleClickSessions, handleClickUserProfile, handleClickMyTutorProfile} from '../Actions/navigationActions'
+import {handleClickLogin, handleClickSubjects, handleClickReviews, handleClickSessions, handleClickUserProfile, handleClickMyTutorProfile, handleClickChat} from '../Actions/navigationActions'
 import {clearSession} from '../Actions/userActions'
 //material-ui imports
 import { withStyles } from 'material-ui/styles';
@@ -29,6 +30,8 @@ import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FaceIcon from '@material-ui/icons/Face';
 import SchoolIcon from '@material-ui/icons/School';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+
 
 //
 
@@ -90,6 +93,10 @@ const Navigation = (props) =>  {
     props.dispatchMyTutorProfile()
   }
 
+  const handleClickChat = () => {
+    props.dispatchChat()
+  }
+
   const renderMyTutorProfile = () => {
     if (props.currentUser){
       if (props.currentUser.tutor){
@@ -138,6 +145,10 @@ const Navigation = (props) =>  {
           return <MyTutorProfile />
         }
 
+        else if (props.navigation.chat){
+          return <Chat />
+        }
+
         else {
           return null
         }
@@ -182,7 +193,7 @@ const Navigation = (props) =>  {
       >
         <div className={classes.toolbar} />
         <List component="nav">
-          
+
           {renderMyTutorProfile()}
 
           <ListItem button onClick={handleClickUserProfile}>
@@ -217,6 +228,14 @@ const Navigation = (props) =>  {
           </ListItem>
           <Divider />
 
+          <ListItem button onClick={handleClickChat}>
+            <ListItemIcon>
+              <QuestionAnswerIcon />
+            </ListItemIcon>
+            <ListItemText primary="Tutor Chat" />
+          </ListItem>
+          <Divider />
+
         </List>
       </Drawer>
 
@@ -246,7 +265,8 @@ const mapDispatchToProps = dispatch => {
     dispatchSessions: () => dispatch(handleClickSessions()),
     dispatchUserPage: () => dispatch(handleClickUserProfile()),
     dispatchClearSession: () => dispatch(clearSession()),
-    dispatchMyTutorProfile: () => dispatch(handleClickMyTutorProfile())
+    dispatchMyTutorProfile: () => dispatch(handleClickMyTutorProfile()),
+    dispatchChat: () => dispatch(handleClickChat()),
   }
 }
 

@@ -10,6 +10,7 @@ export let handleClickLogin = () => {
       reviews: false,
       tutors: false,
       myTutorPage:false,
+      chat: false,
     }
   }
 }
@@ -26,6 +27,7 @@ export let handleClickSubjects = () => {
       reviews: false,
       tutors: false,
       myTutorPage:false,
+      chat: false,
     }
   }
 }
@@ -42,6 +44,7 @@ export let handleClickReviews = () => {
       reviews: true,
       tutors: false,
       myTutorPage:false,
+      chat: false,
     }
   }
 }
@@ -58,6 +61,7 @@ export let handleClickTutors = () => {
       reviews: false,
       tutors: true,
       myTutorPage:false,
+      chat: false,
 
     }
   }
@@ -75,6 +79,7 @@ export let handleClickSessions = () => {
       reviews: false,
       tutors: false,
       myTutorPage:false,
+      chat: false,
     }
   }
 }
@@ -91,6 +96,7 @@ export let handleClickUserProfile = () => {
       reviews: false,
       tutors: false,
       myTutorPage:false,
+      chat: false,
     }
   }
 }
@@ -107,6 +113,24 @@ export let handleClickMyTutorProfile = () => {
       reviews: false,
       tutors: false,
       myTutorPage: true,
+      chat: false,
+    }
+  }
+}
+
+export let handleClickChat = () => {
+  console.log('action hit')
+  return{
+    type: 'CHAT_PAGE',
+    payload: {
+      login: false,
+      userPage: false,
+      sessions: false,
+      subjects: false,
+      reviews: false,
+      tutors: false,
+      myTutorPage: false,
+      chat: true,
     }
   }
 }

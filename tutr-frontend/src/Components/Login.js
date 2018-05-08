@@ -39,6 +39,10 @@ const styles = theme => ({
   textField: {
     flexBasis: 200,
   },
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 });
 
 const ranges = [
@@ -224,7 +228,7 @@ class Login extends React.Component {
         </FormControl>
 
       </CardContent>
-        <CardActions>
+        <CardActions className={classes.row}>
           <Button onClick={this.handleSignUpSubmit} size="small">Sign Up</Button>
           <Button onClick={this.handleSignUpLoginSwitch} size="small">Existing User?</Button>
         </CardActions>
@@ -267,7 +271,7 @@ class Login extends React.Component {
               }
             />
           </FormControl>
-            <CardActions>
+          <CardActions className={classes.row}>
               <Button onClick={this.handleLoginSubmit} size="small">Log In</Button>
               <Button onClick={this.handleSignUpLoginSwitch} size="small">New User?</Button>
             </CardActions>

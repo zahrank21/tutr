@@ -2,10 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import UserCard from './UserCard'
 
+// redux
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-
 import { fetchSubjects } from '../Actions/subjectActions'
+//
+
+//material
 import SubjectCard from './SubjectCard.js';
 import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
@@ -13,8 +16,8 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import classNames from 'classnames';
 import TextField from 'material-ui/TextField';
-
 import { withStyles } from 'material-ui/styles';
+//
 
 
 

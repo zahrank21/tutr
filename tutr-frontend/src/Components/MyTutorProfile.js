@@ -21,7 +21,6 @@ import { compose } from 'redux'
 import { fetchSubjects } from '../Actions/subjectActions'
 import { fetchSessions } from '../Actions/sessionActions'
 import { fetchUsers } from '../Actions/userActions'
-
 //
 
 const styles = theme => ({
@@ -80,6 +79,7 @@ function MyTutorProfile(props) {
     for (i=0; i < filteredReviews.length; i++){
       reviewScoreCount[`${filteredReviews[i].score} Stars`]++
     }
+    console.log(reviewScoreCount)
     return reviewScoreCount
   }
 
@@ -151,7 +151,7 @@ function MyTutorProfile(props) {
                 </Typography>
                 <br/>
                 <br/>
-                <Charts type={'Pie'} title={'Number of Sessions'} data={tutorReviewScores()}/>
+                <Charts type={'Pie'} title={'Number of Ratings'} data={tutorReviewScores()}/>
                 <br/>
               </Paper>
               <br/>

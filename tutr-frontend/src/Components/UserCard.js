@@ -71,11 +71,9 @@ class UserCard extends React.Component{
           <Typography component="p">
             {this.props.user.tutor ? 'Tutor' : 'Student'}
           </Typography>
-          <CardActions>
-            <div justify={'center'}>
-              <Button justify={'center'} onClick={this.handleTutorReviewClick} size="small">Review</Button>
-              <Button justify={'center'} onClick={this.handleBookSessionClick} size="small">Book Session</Button>
-            </div>
+          <CardActions className={classes.row}>
+              <Button onClick={this.handleTutorReviewClick} size="small">Review</Button>
+              <Button onClick={this.handleBookSessionClick} size="small">Book Session</Button>
           </CardActions>
           {this.state.reviewClick ? <ReviewForm tutor={this.props.user.id} /> : null}
         </CardContent>

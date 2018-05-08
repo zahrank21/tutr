@@ -27,12 +27,23 @@ class Charts extends React.Component{
         console.log(colorsArray)
         return colorsArray
       }
+
+      let sortedData = Object.keys(this.props.data).map(key => {
+        return [key, this.props.data[key]];
+      }).sort();
+
+      let reducedSortedData = sortedData.reduce((a, b) => {
+         a[b[0]] = b[1];
+         return a;
+      }, {});
+      // debugger
+
       this.state = {
         chartData: {
-          labels: Object.keys(this.props.data),
+          labels: Object.keys(reducedSortedData),
           datasets: [{
             label: props.title,
-            data: Object.values(this.props.data),
+            data: Object.values(reducedSortedData),
             backgroundColor: this.graphColorizer(),
             borderWidth: 1,
             borderColor: 'grey',

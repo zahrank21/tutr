@@ -6,6 +6,7 @@ const initialState = {
   reviews: false,
   tutors: false,
   myTutorPage: false,
+  chat: false
 }
 
 export default function(state = initialState, action) {
@@ -46,6 +47,10 @@ export default function(state = initialState, action) {
       console.log('reducer hit')
       return action.payload
 
+    case 'CHAT_PAGE':
+      console.log('reducer hit')
+      return action.payload
+      
     default:
       return state;
   }
