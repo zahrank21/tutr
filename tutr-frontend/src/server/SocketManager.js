@@ -18,14 +18,18 @@ socket.on(VERIFY_USER, (nickname, callback) => {
   }
 })
 
+socket.on(USER_CONNECTED, (user) => {
+
+})
+
 function addUser(userList, user){
-  let newList = Oject.assign({}, userList)
+  let newList = Object.assign({}, userList)
   newList[user.name] = user
   return newList
 }
 
 function removeUser(userList, username){
-  let newList = Oject.assign({}, userList)
+  let newList = Object.assign({}, userList)
   delete newList[username]
   return newList
 }
