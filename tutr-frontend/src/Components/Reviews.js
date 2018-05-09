@@ -28,7 +28,6 @@ class Reviews extends React.Component{
 
   componentWillMount(){
     this.props.fetchReviews();
-    console.log(this.props)
   }
 
 

@@ -7,6 +7,7 @@ import Reviews from './Reviews'
 import UserPage from './UserPage'
 import Sessions from './Sessions'
 import MyTutorProfile from './MyTutorProfile'
+import TutorProfile from './TutorProfile'
 import Chat from './Chat'
 // redux imports
 import { connect } from 'react-redux'
@@ -149,6 +150,10 @@ const Navigation = (props) =>  {
           return <Chat />
         }
 
+        else if (props.navigation.tutorPage){
+          return <TutorProfile />
+        }
+
         else {
           return null
         }
@@ -232,7 +237,7 @@ const Navigation = (props) =>  {
             <ListItemIcon>
               <QuestionAnswerIcon />
             </ListItemIcon>
-            <ListItemText primary="Tutor Chat" />
+            <ListItemText primary="Community Chat" />
           </ListItem>
           <Divider />
 

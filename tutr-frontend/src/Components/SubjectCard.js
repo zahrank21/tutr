@@ -33,7 +33,6 @@ const styles = {
 const SubjectCard = props => {
 
   let handleSubjectCardClick = () => {
-    console.log(props)
     props.dispatchSubjectFilter(props.subject)
   }
 

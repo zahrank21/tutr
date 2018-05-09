@@ -1,9 +1,11 @@
 import React from 'react';
 import ReviewForm from './ReviewForm'
+import TutorProfile from './TutorProfile'
 //redux
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {createSession} from '../Actions/sessionActions'
+import {handleTutorProfileClick} from '../Actions/navigationActions'
 //
 
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
@@ -35,6 +37,10 @@ class UserCard extends React.Component{
     reviewClick: false
   }
 
+  handleTutorProfile = () => {
+    this.props.handleTutorProfileClick(this.props.user)
+  }
+
   handleBookSessionClick = () => {
     this.props.createSession({
       title: 'Session',
@@ -49,6 +55,14 @@ class UserCard extends React.Component{
     this.setState({
       reviewClick: !this.state.reviewClick
     })
+  }
+
+  handleTutorProfileClick = () => {
+    return (
+      <div>
+        <TutorProfile />
+      </div>
+    )
   }
 
   render(){
@@ -74,6 +88,7 @@ class UserCard extends React.Component{
           <CardActions className={classes.row}>
               <Button onClick={this.handleTutorReviewClick} size="small">Review</Button>
               <Button onClick={this.handleBookSessionClick} size="small">Book Session</Button>
+              <Button onClick={this.handleTutorProfile} size="small">Profile</Button>
           </CardActions>
           {this.state.reviewClick ? <ReviewForm tutor={this.props.user.id} /> : null}
         </CardContent>
@@ -86,14 +101,15 @@ class UserCard extends React.Component{
 const mapDispatchToProps = dispatch => {
   return {
     dispatchBookSession: session => dispatch(createSession(session)),
+    dispatchTutorProfile: user => dispatch(handleTutorProfileClick(user)),
   }
 }
 
 const mapStateToProps = state => ({
   users: state.users.cards,
-  currentUser: state.users.currentUser
+  currentUser: state.users.currentUser,
 })
 
 export default compose(
-  connect(mapStateToProps, { createSession }),
+  connect(mapStateToProps, { createSession, handleTutorProfileClick }),
   withStyles(styles))(UserCard);

@@ -77,14 +77,12 @@ class Login extends React.Component {
     this.props.fetchUsers();
     this.props.fetchReviews();
     this.props.fetchSessions();
-    console.log('login props', this.props)
   }
 
 
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
-    console.log(`${[prop]}: ${event.target.value}`)
   };
 
   handleMouseDownPassword = event => {
@@ -98,7 +96,6 @@ class Login extends React.Component {
   handleSignUpSubmit = (event) => {
     event.preventDefault();
     let allUsernames = this.props.users.map(user => user.username)
-    console.log(allUsernames)
     if (allUsernames.includes(this.state.username)){
       alert('username already taken')
     } else {

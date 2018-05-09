@@ -45,12 +45,12 @@ const styles = theme => ({
 
 function MyTutorProfile(props) {
   const { classes } = props;
-  console.log('user page props', props)
 
-  const componentWillMount = () => {
-    this.props.fetchSubjects();
-    this.props.fetchSessions();
-    this.props.fetchUsers();
+  let componentWillMount = () => {
+    console.log('tutor profile props', props)
+    // props.fetchSubjects();
+    // props.fetchSessions();
+    // props.fetchUsers();
   }
 
   let mapTutorReviews = () => {
@@ -79,7 +79,6 @@ function MyTutorProfile(props) {
     for (i=0; i < filteredReviews.length; i++){
       reviewScoreCount[`${filteredReviews[i].score} Stars`]++
     }
-    console.log(reviewScoreCount)
     return reviewScoreCount
   }
 
@@ -133,7 +132,9 @@ function MyTutorProfile(props) {
 
 
   return (
+
               <div>
+                {componentWillMount()}
                 <br/>
                 <Paper>
                   <br/>
@@ -210,7 +211,8 @@ const mapStateToProps = state => ({
   reviews: state.reviews.reviewItems,
   sessions: state.sessions.sessionItems,
   subjects: state.subjects.subjectItems,
-  users: state.users.cards
+  users: state.users.cards,
+  user: state.users.card,
 })
 
 export default compose(

@@ -28,7 +28,6 @@ class Users extends React.Component{
 
   componentWillMount(){
     this.props.fetchUsers();
-    console.log(this.props)
   }
 
 

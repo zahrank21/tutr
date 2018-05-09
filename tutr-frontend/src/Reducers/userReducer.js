@@ -2,7 +2,8 @@ const initialState = {
   cards: [],
   card: {},
   chosenSubject: '',
-  currentUser: null
+  currentUser: null,
+  tutorProfile: null
 }
 
 export default function(state = initialState, action) {
@@ -30,12 +31,21 @@ export default function(state = initialState, action) {
         ...state,
         currentUser: null
       }
+
     case 'CHOSEN_SUBJECT':
       console.log(action.payload.subjectId)
       return {
         ...state,
         chosenSubject: action.payload.subjectId
       }
+
+    case 'TUTOR_PAGE':
+      console.log(action.payload.tutorProfile)
+      return {
+        ...state,
+        tutorProfile: action.payload.tutorProfile
+      }
+
     default:
       return state;
   }

@@ -15,7 +15,6 @@ class Charts extends React.Component{
         let colors = ['pink', 'blue', 'orange', 'grey', 'lightblue', 'darkblue', 'red']
         let colorsArray = []
         let i
-        console.log(Object.keys(this.props.data).length)
         for (i=0; i < Object.keys(this.props.data).length; i++){
           if (i >= colors.length){
             colorsArray.push(colors[i % colors.length])
@@ -24,7 +23,6 @@ class Charts extends React.Component{
             colorsArray.push(colors[i])
           }
         }
-        console.log(colorsArray)
         return colorsArray
       }
 
@@ -36,7 +34,6 @@ class Charts extends React.Component{
          a[b[0]] = b[1];
          return a;
       }, {});
-      // debugger
 
       this.state = {
         chartData: {

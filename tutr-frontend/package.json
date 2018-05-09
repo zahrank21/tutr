@@ -20,7 +20,7 @@
     "start": "concurrently 'npm run react' 'npm run server'",
     "react": "react-scripts start",
     "build": "react-scripts build",
-    "server": "nodemon src/server/index.js",
+    "server": "nodemon src/server/server.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

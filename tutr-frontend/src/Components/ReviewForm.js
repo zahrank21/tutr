@@ -64,18 +64,15 @@ class ReviewForm extends React.Component {
   componentWillMount(){
     this.props.fetchSubjects();
     this.props.fetchUsers();
-    console.log('review props', this.props)
   }
 
 
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
-    console.log(`${[prop]}: ${event.target.value}`)
   };
 
   handleSubmitReviewClick = () => {
-    console.log(this.state)
     this.props.createReview({
       tutor_id: parseInt(this.props.tutor),
       student_id: parseInt(this.props.currentUser.id),

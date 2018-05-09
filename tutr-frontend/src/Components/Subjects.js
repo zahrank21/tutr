@@ -63,7 +63,6 @@ class Subjects extends React.Component{
 
   mapUsers = () => {
     let filteredUsers = this.props.users.filter(user => user.username.includes(this.state.query) && user.tutor)
-    console.log(filteredUsers)
     return filteredUsers.map(user => <UserCard key={user.id} user={user}/>)
   }
 
