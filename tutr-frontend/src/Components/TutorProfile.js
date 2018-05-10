@@ -21,6 +21,7 @@ import { compose } from 'redux'
 import { fetchSubjects } from '../Actions/subjectActions'
 import { fetchSessions } from '../Actions/sessionActions'
 import { fetchUsers } from '../Actions/userActions'
+import { fetchReviews } from '../Actions/reviewActions'
 //
 
 const styles = theme => ({
@@ -43,32 +44,29 @@ const styles = theme => ({
 
 });
 
-function
-TutorProfile(props) {
-  const { classes } = props;
+class TutorProfile extends React.Component{
 
-  let componentWillMount = () => {
-    console.log('tutor profile props', props)
-    // props.fetchSubjects();
-    // props.fetchSessions();
-    // props.fetchUsers();
+  componentWillMount(){
+    console.log('tutor profile this.props', this.props);
+    this.props.fetchReviews();
   }
 
-  let mapTutorReviews = () => {
-    let reviewsArray = Object.values(props.reviews)
-    let filteredReviews = reviewsArray.filter(review => review.tutor_id === props.user.id)
+  mapTutorReviews = () => {
+    let reviewsArray = Object.values(this.props.reviews)
+    let filteredReviews = reviewsArray.filter(review => review.tutor_id === this.props.user.id)
     return filteredReviews.map(review => <ReviewCard key={review.id} review={review} />)
   }
 
-  let mapTutorSessions = () =>{
-    let sessionsArray = Object.values(props.sessions)
-    let filteredSessions = sessionsArray.filter(session => session.tutor_id === props.user.id)
+  mapTutorSessions = () =>{
+    let sessionsArray = Object.values(this.props.sessions)
+    let filteredSessions = sessionsArray.filter(session => session.tutor_id === this.props.user.id)
     return filteredSessions.map(session => <SessionCard key={session.id} session={session} />)
   }
 
-  let tutorReviewScores = () => {
-    let reviewsArray = Object.values(props.reviews)
-    let filteredReviews = reviewsArray.filter(review => review.tutor_id === props.user.id)
+  tutorReviewScores = () => {
+    console.log(this.props.reviews)
+    let reviewsArray = Object.values(this.props.reviews)
+    let filteredReviews = reviewsArray.filter(review => review.tutor_id === this.props.user.id)
 
     let i;
     let reviewScoreCount = {}
@@ -83,64 +81,16 @@ TutorProfile(props) {
     return reviewScoreCount
   }
 
-
-
-  let studentSubjects = () => {
-    let sessionsArray = Object.values(props.sessions)
-    let studentSessions = sessionsArray.filter(session => session.student_id === props.user.id)
-
-    const getSubjectName = (id) => {
-      let foundSubject = props.subjects.filter(subject => subject.id == id)
-      return foundSubject[0].name
-    }
-
-    let i;
-    let subjectCountObject = {}
-    for (i = 0; i < studentSessions.length; i++){
-        subjectCountObject[getSubjectName(studentSessions[i].subject_id)] = 0
-    }
-
-    for (i = 0; i < studentSessions.length; i++){
-        subjectCountObject[getSubjectName(studentSessions[i].subject_id)]++
-    }
-    return subjectCountObject
-  }
-
-  let studentTutors = () => {
-    let sessionsArray = Object.values(props.sessions)
-    let studentSessions = sessionsArray.filter(session => session.student_id === props.user.id)
-
-    const getUsername = (id) => {
-      let foundUser = props.users.filter(user => user.id == id)
-      return foundUser[0].username
-    }
-
-    let i;
-    let tutorCountObject = {}
-    for (i = 0; i < studentSessions.length; i++){
-        tutorCountObject[getUsername(studentSessions[i].tutor_id)] = 0
-    }
-
-    for (i = 0; i < studentSessions.length; i++){
-        tutorCountObject[getUsername(studentSessions[i].tutor_id)]++
-    }
-    return tutorCountObject
-  }
-
-
-
-
-
-
-  return (
+  render(){
+    const { classes } = this.props;
+    return (
 
               <div>
-                {componentWillMount()}
                 <br/>
                 <Paper>
                   <br/>
                   <Typography variant="headline" component="h3">
-                    {`${props.user.username}'s Profile`}
+                    {`${this.props.user.username}'s Profile`}
                   </Typography>
                   <br/>
                 </Paper>
@@ -153,7 +103,7 @@ TutorProfile(props) {
                 </Typography>
                 <br/>
                 <br/>
-                <Charts type={'Pie'} title={'Number of Ratings'} data={tutorReviewScores()}/>
+                <Charts type={'Pie'} title={'Number of Ratings'} data={this.tutorReviewScores()}/>
                 <br/>
               </Paper>
               <br/>
@@ -170,7 +120,7 @@ TutorProfile(props) {
                 <Grid>
                   <Grid container className={classes.demo} justify="center" spacing={8}>
 
-                    {mapTutorReviews()}
+                    {this.mapTutorReviews()}
                   </Grid>
 
                 </Grid>
@@ -190,7 +140,7 @@ TutorProfile(props) {
                   <br/>
                 <Grid>
                   <Grid container className={classes.demo} justify="center" spacing={8}>
-                    {mapTutorSessions()}
+                    {this.mapTutorSessions()}
                   </Grid>
                 </Grid>
                 <br/>
@@ -198,7 +148,7 @@ TutorProfile(props) {
               <br/>
             </div>
 
-  );
+    );}
 }
 
 
@@ -219,5 +169,5 @@ const mapStateToProps = state => ({
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps))(
+  connect(mapStateToProps, {fetchSubjects, fetchSessions, fetchUsers, fetchReviews}))(
     TutorProfile);

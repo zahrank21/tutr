@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {createSession} from '../Actions/sessionActions'
 import {handleTutorProfileClick} from '../Actions/navigationActions'
+import {fetchReviews} from '../Actions/reviewActions'
 //
 
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
@@ -38,6 +39,7 @@ class UserCard extends React.Component{
   }
 
   handleTutorProfile = () => {
+    this.props.fetchReviews()
     this.props.handleTutorProfileClick(this.props.user)
   }
 
@@ -111,5 +113,5 @@ const mapStateToProps = state => ({
 })
 
 export default compose(
-  connect(mapStateToProps, { createSession, handleTutorProfileClick }),
+  connect(mapStateToProps, { createSession, handleTutorProfileClick, fetchReviews  }),
   withStyles(styles))(UserCard);

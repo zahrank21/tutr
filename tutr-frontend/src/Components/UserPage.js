@@ -42,30 +42,29 @@ const styles = theme => ({
 
 });
 
-function UserPage(props) {
-  const { classes } = props;
+class UserPage extends React.Component{
 
-  const componentWillMount = () => {
+  componentWillMount = () => {
     this.props.fetchSubjects();
     this.props.fetchSessions();
     this.props.fetchUsers();
   }
 
-  let mapTutorReviews = () => {
-    let reviewsArray = Object.values(props.reviews)
-    let filteredReviews = reviewsArray.filter(review => review.tutor_id === props.currentUser.id)
+  mapTutorReviews = () => {
+    let reviewsArray = Object.values(this.props.reviews)
+    let filteredReviews = reviewsArray.filter(review => review.tutor_id === this.props.currentUser.id)
     return filteredReviews.map(review => <ReviewCard key={review.id} review={review} />)
   }
 
-  let mapTutorSessions = () =>{
-    let sessionsArray = Object.values(props.sessions)
-    let filteredSessions = sessionsArray.filter(session => session.tutor_id === props.currentUser.id)
+  mapTutorSessions = () =>{
+    let sessionsArray = Object.values(this.props.sessions)
+    let filteredSessions = sessionsArray.filter(session => session.tutor_id === this.props.currentUser.id)
     return filteredSessions.map(session => <SessionCard key={session.id} session={session} />)
   }
 
-  let tutorReviewScores = () => {
-    let reviewsArray = Object.values(props.reviews)
-    let filteredReviews = reviewsArray.filter(review => review.tutor_id === props.currentUser.id)
+  tutorReviewScores = () => {
+    let reviewsArray = Object.values(this.props.reviews)
+    let filteredReviews = reviewsArray.filter(review => review.tutor_id === this.props.currentUser.id)
 
     let i;
     let reviewScoreCount = {}
@@ -82,12 +81,12 @@ function UserPage(props) {
 
 
 
-  let studentSubjects = () => {
-    let sessionsArray = Object.values(props.sessions)
-    let studentSessions = sessionsArray.filter(session => session.student_id === props.currentUser.id)
+  studentSubjects = () => {
+    let sessionsArray = Object.values(this.props.sessions)
+    let studentSessions = sessionsArray.filter(session => session.student_id === this.props.currentUser.id)
 
     const getSubjectName = (id) => {
-      let foundSubject = props.subjects.filter(subject => subject.id == id)
+      let foundSubject = this.props.subjects.filter(subject => subject.id == id)
       return foundSubject[0].name
     }
 
@@ -103,12 +102,12 @@ function UserPage(props) {
     return subjectCountObject
   }
 
-  let studentTutors = () => {
-    let sessionsArray = Object.values(props.sessions)
-    let studentSessions = sessionsArray.filter(session => session.student_id === props.currentUser.id)
+  studentTutors = () => {
+    let sessionsArray = Object.values(this.props.sessions)
+    let studentSessions = sessionsArray.filter(session => session.student_id === this.props.currentUser.id)
 
     const getUsername = (id) => {
-      let foundUser = props.users.filter(user => user.id == id)
+      let foundUser = this.props.users.filter(user => user.id == id)
       return foundUser[0].username
     }
 
@@ -128,14 +127,16 @@ function UserPage(props) {
 
 
 
+  render(){
 
+    const { classes } = this.props;
   return (
     <div>
-      {props.currentUser ?
+      {this.props.currentUser ?
         <div>
           <Paper className={classes.root} elevation={4}>
             <Typography variant="headline" component="h3">
-              {`${props.currentUser.username} Profile`}
+              {`${this.props.currentUser.username} Profile`}
             </Typography>
             <div className={classes.row}>
 
@@ -145,7 +146,7 @@ function UserPage(props) {
               />
            </div>
             <Typography component="h4">
-              {`${props.currentUser.first_name} ${props.currentUser.last_name}`}
+              {`${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`}
             </Typography>
           </Paper>
           <br/>
@@ -159,7 +160,7 @@ function UserPage(props) {
             <br/>
           <Paper>
             <br/>
-              <Charts type={'Bar'} title={'Number of Sessions'} data={studentSubjects()}/>
+              <Charts type={'Bar'} title={'Number of Sessions'} data={this.studentSubjects()}/>
             <br/>
           </Paper>
           <br/>
@@ -173,7 +174,7 @@ function UserPage(props) {
             <br/>
           <Paper>
             <br/>
-              <Charts type={'Bar'} title={'Number of Sessions'} data={studentTutors()}/>
+              <Charts type={'Bar'} title={'Number of Sessions'} data={this.studentTutors()}/>
             <br/>
           </Paper>
           <div>
@@ -192,6 +193,7 @@ function UserPage(props) {
     </div>
   );
 }
+}
 
 
 
@@ -209,4 +211,4 @@ const mapStateToProps = state => ({
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps))(UserPage);
+  connect(mapStateToProps, {fetchSubjects, fetchSessions, fetchUsers}))(UserPage);
