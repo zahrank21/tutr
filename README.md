@@ -21,6 +21,8 @@ While visiting Bangladesh, my cousin had an idea of making a tutoring company wh
 
 - [socket.io](https://socket.io/)
 
+- [Ruby on Rails](https://rubyonrails.org/)
+
 # Installation
 
 ## For Developers 
