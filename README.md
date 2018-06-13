@@ -19,9 +19,7 @@ While visiting Bangladesh, my cousin had an idea of making a tutoring company wh
 
 - [Redux](https://redux.js.org/)
 
-Redux
-
-WebSockets
+- [socket.io](https://socket.io/)
 
 # Installation
 
