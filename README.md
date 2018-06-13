@@ -1,12 +1,10 @@
 
 
-
-
 # Tutr
 Application for users to find tutors for subjects they would like to study. They can view tutors and their ratings. 
 
 # Motivation
-I wanted to start building a resource for users to find tutors that they know will be qualified for their needs. 
+While visiting Bangladesh, my cousin had an idea of making a tutoring company which worked for students who were looking to learn various subjects. I wanted to start building a resource for users to find tutors that they know will be qualified for their needs. We want the application to be light weight and adhere to Google's design specifications as a majority of users have Android devices. 
 
 # Screenshots
 ![1](https://i.imgur.com/dpfHZSA.png)
@@ -15,7 +13,11 @@ I wanted to start building a resource for users to find tutors that they know wi
 
 # Built with:
 
-React
+- [Electron](https://electron.atom.io)
+
+- [React](https://reactjs.org/)
+
+- [Redux](https://redux.js.org/)
 
 Redux
 
@@ -23,13 +25,38 @@ WebSockets
 
 # Installation
 
-## Backend
+## For Developers 
+Clone the source locally:
 
-rails s 
+```sh
+$ git clone https://github.com/zahrank21/tutr/
+$ cd tutr
+$ cd tutr-backend
+```
+Start Rails Session:
 
-## Frontend
+```sh
+$ rails s
+```
+Change to Frontend:
 
-npm start
+```sh
+$ cd ..
+$ cd tutr-frontend
+```
+
+Install project dependencies:
+
+```sh
+$ npm install
+```
+
+Start the app:
+
+```sh
+$ npm run react
+$ npm run server
+```
 
 # Credits
 
