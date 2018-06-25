@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard'
+import ReviewForm from './ReviewForm'
 import SessionCard from './SessionCard'
 import Charts from './Charts'
 
@@ -13,6 +14,9 @@ import classNames from 'classnames';
 import GridList from 'material-ui/GridList';
 import Divider from 'material-ui/Divider';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+
 //
 
 //redux
@@ -45,6 +49,10 @@ const styles = theme => ({
 });
 
 class TutorProfile extends React.Component{
+
+  state = {
+    reviewClick: false
+  }
 
   componentWillMount(){
     console.log('tutor profile this.props', this.props);
@@ -81,6 +89,12 @@ class TutorProfile extends React.Component{
     return reviewScoreCount
   }
 
+  handleTutorReviewClick = () => {
+    this.setState({
+      reviewClick: !this.state.reviewClick
+    })
+  }
+
   render(){
     const { classes } = this.props;
     return (
@@ -93,6 +107,11 @@ class TutorProfile extends React.Component{
                     {`${this.props.user.username}'s Profile`}
                   </Typography>
                   <br/>
+                    <CardActions className={classes.row}>
+                        <Button onClick={this.handleTutorReviewClick} size="small">Review</Button>
+                        <Button onClick={this.handleBookSessionClick} size="small">Book Session</Button>
+                    </CardActions>
+                    {this.state.reviewClick ? <ReviewForm tutor={this.props.user.id} /> : null}
                 </Paper>
                 <br/>
               <br/>

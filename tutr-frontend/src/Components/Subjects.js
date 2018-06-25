@@ -63,7 +63,7 @@ class Subjects extends React.Component{
 
   mapUsers = () => {
     console.log(this.props.users)
-    let filteredUsers = this.props.users.filter(user => user.username.toLowerCase().includes(this.state.query.toLowerCase()) || user.first_name.toLowerCase().includes(this.state.query.toLowerCase()) || user.last_name.toLowerCase().includes(this.state.query.toLowerCase()) && user.tutor)
+    let filteredUsers = this.props.users.filter(user => (user.username.toLowerCase().includes(this.state.query.toLowerCase()) || user.first_name.toLowerCase().includes(this.state.query.toLowerCase()) || user.last_name.toLowerCase().includes(this.state.query.toLowerCase())) && user.tutor)
     return filteredUsers.map(user => <UserCard key={user.id} user={user}/>)
   }
 
