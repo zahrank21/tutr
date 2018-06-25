@@ -81,6 +81,10 @@ class ReviewForm extends React.Component {
       score: parseInt(this.state.rating),
       subject_id: parseInt(this.props.currentUser.subject_id)
     })
+    alert('Your Review Was Submitted')
+    this.setState({title: '',
+    body: '',
+    rating: ''})
   }
 
 
