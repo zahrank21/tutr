@@ -51,6 +51,7 @@ class UserCard extends React.Component{
       subject_id: this.props.user.subject_id,
       completed: false
     });
+    alert('Session Booked')
   }
 
   handleTutorReviewClick = () => {
