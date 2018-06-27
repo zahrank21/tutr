@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewForm from './ReviewForm'
+import SessionForm from './SessionForm'
 import TutorProfile from './TutorProfile'
 //redux
 import {connect} from 'react-redux'
@@ -9,11 +10,12 @@ import {handleTutorProfileClick} from '../Actions/navigationActions'
 import {fetchReviews} from '../Actions/reviewActions'
 //
 
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+
 
 
 
@@ -35,7 +37,8 @@ const styles = {
 class UserCard extends React.Component{
 
   state = {
-    reviewClick: false
+    reviewClick: false,
+    sessionClick: false
   }
 
   handleTutorProfile = () => {
@@ -44,19 +47,16 @@ class UserCard extends React.Component{
   }
 
   handleBookSessionClick = () => {
-    this.props.createSession({
-      title: 'Session',
-      tutor_id: this.props.user.id,
-      student_id: this.props.currentUser.id,
-      subject_id: this.props.user.subject_id,
-      completed: false
-    });
-    alert('Session Booked')
+    this.setState({
+      sessionClick: !this.state.sessionClick,
+      reviewClick: false
+    })
   }
 
   handleTutorReviewClick = () => {
     this.setState({
-      reviewClick: !this.state.reviewClick
+      reviewClick: !this.state.reviewClick,
+      sessionClick: false
     })
   }
 
@@ -94,6 +94,7 @@ class UserCard extends React.Component{
               <Button onClick={this.handleTutorProfile} size="small">Profile</Button>
           </CardActions>
           {this.state.reviewClick ? <ReviewForm tutor={this.props.user.id} /> : null}
+          {this.state.sessionClick ? <SessionForm tutor={this.props.user.id} /> : null}
         </CardContent>
       </Card>
     </Grid>
