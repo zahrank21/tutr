@@ -31,7 +31,6 @@ export default class Layout extends Component {
 	*/
 	initSocket(socket){
 		socket.on('connect', (value)=>{
-			console.log("Connected");
 		})
 		socket.on('disconnect', this.reconnectUserInfo)
 	}

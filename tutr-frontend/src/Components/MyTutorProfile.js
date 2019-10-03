@@ -41,7 +41,6 @@ function MyTutorProfile(props) {
   const { classes } = props;
 
   let componentWillMount = () => {
-    console.log('tutor profile props', props)
     // props.fetchSubjects();
     // props.fetchSessions();
     // props.fetchUsers();

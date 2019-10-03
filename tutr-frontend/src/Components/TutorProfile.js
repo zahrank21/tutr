@@ -55,7 +55,6 @@ class TutorProfile extends React.Component{
   }
 
   componentWillMount(){
-    console.log('tutor profile this.props', this.props);
     this.props.fetchReviews();
   }
 
@@ -72,7 +71,6 @@ class TutorProfile extends React.Component{
   }
 
   tutorReviewScores = () => {
-    console.log(this.props.reviews)
     let reviewsArray = Object.values(this.props.reviews)
     let filteredReviews = reviewsArray.filter(review => review.tutor_id === this.props.user.id)
 

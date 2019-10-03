@@ -17,7 +17,6 @@ class Charts extends React.Component{
         for (i=0; i < Object.keys(this.props.data).length; i++){
           if (i >= colors.length){
             colorsArray.push(colors[i % colors.length])
-            console.log(i % colors.length)
           } else {
             colorsArray.push(colors[i])
           }

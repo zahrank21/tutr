@@ -37,7 +37,6 @@ class Users extends React.Component{
   }
 
   mapUsers = () => {
-    console.log('mapuser', this.props)
     let usersArray = Object.values(this.props.users)
     let filteredUsers = usersArray.filter(user => user.subject_id === parseInt(this.props.chosenSubject) && user.tutor === true)
     return filteredUsers.map(user => <UserCard key={user.id} user={user} />)
