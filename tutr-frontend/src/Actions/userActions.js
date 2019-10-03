@@ -25,7 +25,6 @@ export const createUser = (userData) => dispatch => {
 }
 
 export const  handleSubjectCardClick = (subject) => {
-  console.log(subject)
   return {
     type: 'CHOSEN_SUBJECT',
     payload: {
@@ -35,7 +34,6 @@ export const  handleSubjectCardClick = (subject) => {
 }
 
 export const setUser = (userData) => {
-  console.log(userData)
   return {
     type: 'SET_USER',
     payload: userData
