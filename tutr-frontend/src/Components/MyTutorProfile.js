@@ -8,9 +8,6 @@ import Charts from './Charts'
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import Avatar from 'material-ui/Avatar';
-import classNames from 'classnames';
-import GridList from 'material-ui/GridList';
 import Divider from 'material-ui/Divider';
 import Grid from 'material-ui/Grid';
 //
@@ -18,9 +15,6 @@ import Grid from 'material-ui/Grid';
 //redux
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { fetchSubjects } from '../Actions/subjectActions'
-import { fetchSessions } from '../Actions/sessionActions'
-import { fetchUsers } from '../Actions/userActions'
 //
 
 const styles = theme => ({
