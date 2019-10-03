@@ -1,5 +1,4 @@
 export let handleClickLogin = () => {
-  console.log('action hit')
   return{
     type: 'LOGIN_TAB',
     payload: {
@@ -17,7 +16,6 @@ export let handleClickLogin = () => {
 }
 
 export let handleClickSubjects = () => {
-  console.log('action hit')
   return {
     type: 'SUBJECTS_TAB',
     payload: {
@@ -35,7 +33,6 @@ export let handleClickSubjects = () => {
 }
 
 export let handleClickReviews = () => {
-  console.log('action hit')
   return {
     type: 'REVIEWS_TAB',
     payload: {
@@ -53,7 +50,6 @@ export let handleClickReviews = () => {
 }
 
 export let handleClickTutors = () => {
-  console.log('action hit')
   return {
     type: 'TUTORS_TAB',
     payload: {
@@ -72,7 +68,6 @@ export let handleClickTutors = () => {
 }
 
 export let handleClickSessions = () => {
-  console.log('action hit')
   return {
     type: 'SESSIONS_TAB',
     payload: {
@@ -90,7 +85,6 @@ export let handleClickSessions = () => {
 }
 
 export let handleClickUserProfile = () => {
-  console.log('action hit')
   return {
     type: 'PROFILE_TAB',
     payload: {
@@ -108,7 +102,6 @@ export let handleClickUserProfile = () => {
 }
 
 export let handleClickMyTutorProfile = () => {
-  console.log('action hit')
   return{
     type: 'MY_TUTOR_PAGE',
     payload: {
@@ -126,7 +119,6 @@ export let handleClickMyTutorProfile = () => {
 }
 
 export let handleClickChat = () => {
-  console.log('action hit')
   return{
     type: 'CHAT_PAGE',
     payload: {
@@ -144,7 +136,6 @@ export let handleClickChat = () => {
 }
 
 export let handleTutorProfileClick = (user) => {
-  console.log('action hit')
   return{
     type: 'TUTOR_PAGE',
     payload: {

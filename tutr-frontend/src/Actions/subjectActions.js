@@ -8,7 +8,6 @@ export const fetchSubjects = () => dispatch => {
 }
 
 export const createSubject = (subjectData) => dispatch => {
-  console.log('action called')
   fetch('http://localhost:3000/api/v1/subjects', {
     method: 'POST',
     headers: {

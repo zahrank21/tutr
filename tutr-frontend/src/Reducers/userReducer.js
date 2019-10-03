@@ -9,7 +9,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_USERS':
-    console.log('fetch user reducer hit')
       return {
         ...state,
         cards: action.payload
@@ -20,7 +19,6 @@ export default function(state = initialState, action) {
         card: action.payload
       }
     case 'SET_USER':
-      console.log('set user', action.payload)
       return {
         ...state,
         currentUser: action.payload
@@ -33,14 +31,12 @@ export default function(state = initialState, action) {
       }
 
     case 'CHOSEN_SUBJECT':
-      console.log(action.payload.subjectId)
       return {
         ...state,
         chosenSubject: action.payload.subjectId
       }
 
     case 'TUTOR_PAGE':
-      console.log(action.payload.tutorProfile)
       return {
         ...state,
         tutorProfile: action.payload.tutorProfile

@@ -8,8 +8,6 @@ export const fetchReviews = () => dispatch => {
 }
 
 export const createReview = (reviewData) => dispatch => {
-  console.log('createReview action called')
-  console.log('review data', reviewData)
   fetch('http://localhost:3000/api/v1/reviews', {
     method: 'POST',
     headers: {

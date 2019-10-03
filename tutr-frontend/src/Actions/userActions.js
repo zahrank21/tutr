@@ -9,7 +9,6 @@ export const fetchUsers = () => dispatch => {
 }
 
 export const createUser = (userData) => dispatch => {
-  console.log('action called')
   fetch('http://localhost:3000/api/v1/users', {
     method: 'POST',
     headers: {

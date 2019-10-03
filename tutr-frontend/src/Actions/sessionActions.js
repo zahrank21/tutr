@@ -8,7 +8,6 @@ export const fetchSessions = () => dispatch => {
 }
 
 export const createSession = (sessionData) => dispatch => {
-  console.log('action called')
   fetch('http://localhost:3000/api/v1/sessions', {
     method: 'POST',
     headers: {
