@@ -5,7 +5,6 @@ import { compose } from 'redux'
 
 import { fetchSessions } from '../Actions/sessionActions'
 import SessionCard from './SessionCard.js';
-import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';

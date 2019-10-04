@@ -2,11 +2,8 @@ import React from 'react';
 
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import { fetchUsers } from '../Actions/userActions'
-import { fetchSubjects } from '../Actions/subjectActions'
 
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';

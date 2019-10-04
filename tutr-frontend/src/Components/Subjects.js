@@ -14,7 +14,6 @@ import GridList, { GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
-import classNames from 'classnames';
 import TextField from 'material-ui/TextField';
 import { withStyles } from 'material-ui/styles';
 //

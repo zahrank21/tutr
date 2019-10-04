@@ -5,7 +5,6 @@ import { compose } from 'redux'
 
 import { fetchReviews } from '../Actions/reviewActions'
 import ReviewCard from './ReviewCard.js';
-import GridList from 'material-ui/GridList';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
