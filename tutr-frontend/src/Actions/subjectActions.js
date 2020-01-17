@@ -2,7 +2,7 @@ export const fetchSubjects = () => dispatch => {
     fetch('/api/v1/subjects')
       .then(res=> res.json())
       .then(subjects => dispatch({
-        type: 'FETCH_SUBJECTS',
+        type: 'FETC_SUBJECTS',
         payload: subjects
       }));
 }
