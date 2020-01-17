@@ -1,5 +1,5 @@
 export const fetchReviews = () => dispatch => {
-    fetch('http://localhost:3000/api/v1/reviews')
+    fetch('/api/v1/reviews')
       .then(res=> res.json())
       .then(reviews => dispatch({
         type: 'FETCH_REVIEWS',
@@ -8,7 +8,7 @@ export const fetchReviews = () => dispatch => {
 }
 
 export const createReview = (reviewData) => dispatch => {
-  fetch('http://localhost:3000/api/v1/reviews', {
+  fetch('/api/v1/reviews', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
