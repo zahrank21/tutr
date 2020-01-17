@@ -16,7 +16,7 @@ export const createSession = (sessionData) => dispatch => {
 
     body: JSON.stringify(sessionData)
   })
-    .then(res=> res.json())
+          .then(res=> res.json())
     .then(session => dispatch({
       type: 'NEW_SESSION',
       payload: session
