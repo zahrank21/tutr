@@ -1,5 +1,5 @@
 export const fetchSessions = () => dispatch => {
-    fetch('http://localhost:3000/api/v1/sessions')
+    fetch('/api/v1/sessions')
       .then(res=> res.json())
       .then(sessions => dispatch({
         type: 'FETCH_SESSIONS',
@@ -8,7 +8,7 @@ export const fetchSessions = () => dispatch => {
 }
 
 export const createSession = (sessionData) => dispatch => {
-  fetch('http://localhost:3000/api/v1/sessions', {
+  fetch('/api/v1/sessions', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
