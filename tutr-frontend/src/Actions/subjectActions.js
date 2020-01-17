@@ -1,5 +1,5 @@
 export const fetchSubjects = () => dispatch => {
-    fetch('http://localhost:3000/api/v1/subjects')
+    fetch('/api/v1/subjects')
       .then(res=> res.json())
       .then(subjects => dispatch({
         type: 'FETCH_SUBJECTS',
@@ -8,7 +8,7 @@ export const fetchSubjects = () => dispatch => {
 }
 
 export const createSubject = (subjectData) => dispatch => {
-  fetch('http://localhost:3000/api/v1/subjects', {
+  fetch('/api/v1/subjects', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
